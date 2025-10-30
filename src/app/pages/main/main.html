@@ -1,29 +1,41 @@
 <div class="main-container">
 
-    <div class="header">
-      <div class="header-content">
-  
-        <div class="logo">
-          <span class="brand">FinCoach</span>
-        </div>
-  
-        <div class="menu">
-          <a href="#">Inicio</a>
-          <a href="#">Planes</a>
-          <a href="#">Blog</a>
-          <a href="#">Contacto</a>
-        </div>
-  
-        <div class="actions">
-          <button class="btn-outline">Ingresar</button>
-          <button class="btn-primary">Registrarse</button>
-        </div>
-  
+  <div class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="brand">FinCoach</span>
+      </div>
+
+      <div class="menu">
+        <a href="#">Inicio</a>
+        <a href="#">Planes</a>
+        <a href="#">Blog</a>
+        <a href="#">Contacto</a>
+      </div>
+
+      <div class="actions">
+        <button class="btn-outline">Ingresar</button>
+        <button class="btn-primary">Registrarse</button>
       </div>
     </div>
-  
-    <div class="content">
-    </div>
-  
   </div>
-  
+
+  <!-- ✅ Carrusel -->
+  <div class="carousel">
+    <div class="slides" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+      <img *ngFor="let img of images" [src]="img" class="slide" />
+    </div>
+
+    <div class="dots">
+      <span 
+        *ngFor="let img of images; let i = index"
+        class="dot" 
+        [class.active]="i === currentIndex"
+        (click)="goToSlide(i)">
+      </span>
+    </div>
+  </div>
+
+
+
+</div>
