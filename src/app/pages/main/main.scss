@@ -1,18 +1,19 @@
+/* === GLOBAL FIX === */
 
 .main-container {
   width: 100vw;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
+/* HEADER */
 .header {
   width: 100%;
-  background: #89d631;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  background: linear-gradient(90deg, #89d631, #6bb025);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .header-content {
-  max-width: 1200px; 
+  max-width: 1200px;
   margin: 0 auto;
   height: 70px;
   display: flex;
@@ -21,16 +22,44 @@
   padding: 0 20px;
 }
 
-.logo {
+.actions {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  gap: 12px;
+}
+
+.btn-outline,
+.btn-primary {
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.btn-outline {
+  border: 2px solid white;
+  color: white;
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, .2);
+}
+
+.btn-primary {
+  background: white;
+  color: #89d631;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #f1f1f1;
 }
 
 .brand {
   font-size: 25px;
   font-weight: 700;
-  color: #ffffff;
+  color: #fff;
 }
 
 .menu {
@@ -39,70 +68,31 @@
 }
 
 .menu a {
-  color: #ffffff;
-  font-size: 16px;
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
-  transition: 0.3s;
 }
 
-.menu a:hover {
-  opacity: 0.7;
-}
-
-.actions {
-  display: flex;
-  gap: 12px;
-}
-
-.btn-outline {
-  padding: 8px 18px;
-  border: 2px solid #ffffff;
-  background: transparent;
-  color: #ffffff;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-outline:hover {
-  background: rgba(255,255,255,0.2);
-}
-
-.btn-primary {
-  padding: 8px 18px;
-  background: #ffffff;
-  color: #4E7D0E;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
-}
-
-.btn-primary:hover {
-  background: #f1f1f1;
-}
-
-/* === CARRUSEL === */
-.carousel {
-  width: 100%;
-  height: 350px;
+.hero-banner {
+  width: 100vw;
+  height: 40vw; /* altura dinámica según ancho de pantalla */
+  max-height: 500px; /* limite en pantallas grandes */
+  min-height: 250px; /* limite en móviles */
   overflow: hidden;
   position: relative;
 }
 
 .slides {
   display: flex;
-  width: 100%;
   height: 100%;
-  transition: transform 0.8s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
 .slide {
+  flex-shrink: 0;
   width: 100vw;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* clave para que no se deforme */
 }
 
 .dots {
@@ -117,20 +107,223 @@
 .dot {
   width: 12px;
   height: 12px;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, .5);
   border-radius: 50%;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .dot.active {
   background: white;
-  scale: 1.2;
+  transform: scale(1.2);
 }
 
-
-.content {
-  padding: 40px;
-  font-size: 24px;
+/* === SERVICES SECTION === */
+.services-section {
+  width: 100%;
+  background: #f2f4f7;
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
 }
 
+.services-container {
+  width: min(1200px, 95%);
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.left-column {
+  width: 665px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 160px);
+  gap: 20px;
+}
+
+.service-card {
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(82, 112, 148, .18),
+    0 1px 3px rgba(82, 112, 148, .1);
+  transition: all .25s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(82, 112, 148, .22),
+    0 4px 8px rgba(82, 112, 148, .16);
+}
+
+.service-icon {
+  font-size: 34px;
+  color: #89d631;
+  margin-bottom: 8px;
+}
+
+/* RIGHT FORM */
+.right-column {
+  width: 450px;
+  display: flex;
+  align-items: center;
+}
+
+.form-card {
+  width: 100%;
+  background: white;
+  border-radius: 14px;
+  padding: 30px;
+  height: 340px;
+  box-shadow: 0 2px 6px rgba(82, 112, 148, .18),
+    0 1px 3px rgba(82, 112, 148, .1);
+}
+
+.mini-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.mini-form input,
+.mini-form button {
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.mini-form input {
+  border: 1px solid #ddd;
+}
+
+.mini-form button {
+  background: #89d631;
+  border: none;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+/* === PROMO SECTION === */
+.promo-section {
+  width: 100%;
+  background: #fff;
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.promo-container {
+  width: min(1200px, 95%);
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.promo-left {
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.promo-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #2d3e50;
+}
+
+.promo-text {
+  font-size: 16px;
+  color: #526173;
+  max-width: 380px;
+  line-height: 1.55;
+}
+
+/* ✅ 2x2 FIJO */
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 260px);
+  gap: 18px;
+}
+
+.promo-small-img {
+  width: 260px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .09);
+}
+
+/* RIGHT BIG IMAGE */
+.promo-right {
+  width: 600px;
+  height: 490px;
+}
+
+.promo-big-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .13);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 992px) {
+  .services-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-column {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .right-column {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .promo-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .promo-right {
+    width: 100%;
+    height: 400px;
+  }
+
+  .promo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+
+  .left-column {
+    grid-template-columns: 1fr;
+  }
+
+  .main-container {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .promo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .promo-small-img {
+    width: 100%;
+    height: 150px;
+  }
+
+  .promo-right {
+    height: 300px;
+  }
+}

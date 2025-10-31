@@ -1,5 +1,6 @@
 <div class="main-container">
 
+  <!-- HEADER -->
   <div class="header">
     <div class="header-content">
       <div class="logo">
@@ -20,21 +21,77 @@
     </div>
   </div>
 
-  <!-- ✅ Carrusel -->
-  <div class="carousel">
-    <div class="slides" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+  <!-- HERO CAROUSEL -->
+  <div class="hero-banner">
+    <div class="slides"    [style.transform]="transformValue" [style.width]="images.length * 100 + '%'"
+      [style.transform]="'translateX(-' + (currentIndex * (100 / images.length)) + '%)'">
       <img *ngFor="let img of images" [src]="img" class="slide" />
     </div>
 
     <div class="dots">
-      <span 
-        *ngFor="let img of images; let i = index"
-        class="dot" 
-        [class.active]="i === currentIndex"
-        (click)="goToSlide(i)">
-      </span>
+      <span *ngFor="let img of images; let i = index" class="dot" [class.active]="i === currentIndex"
+        (click)="goToSlide(i)"></span>
     </div>
   </div>
+
+
+
+  <!-- SERVICES SECTION -->
+  <div class="services-section">
+    <div class="services-container">
+
+      <!-- Mini Cards -->
+      <div class="left-column">
+        <div class="service-card" *ngFor="let s of services">
+          <span class="material-icons service-icon">{{ s.icon }}</span>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.text }}</p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="right-column">
+        <div class="form-card">
+          <h2>Comienza ahora</h2>
+          <p>Déjanos tus datos para ayudarte personalmente.</p>
+
+          <form class="mini-form">
+            <input type="text" placeholder="Tu nombre" />
+            <input type="email" placeholder="Correo" />
+            <button>Enviar</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="promo-section">
+    <div class="promo-container">
+
+      <!-- LEFT -->
+      <div class="promo-left">
+        <h2 class="promo-title">Impulsa tu futuro financiero</h2>
+        <p class="promo-text">
+          Aprende a invertir, mejorar tu crédito y construir libertad financiera.
+        </p>
+
+        <!-- Grid 2x2 fixed -->
+        <div class="promo-grid">
+          <div class="promo-small-card" *ngFor="let img of promoSmallImages">
+            <img [src]="img" class="promo-small-img" />
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="promo-right">
+        <img [src]="promoBigImage" class="promo-big-img" />
+      </div>
+
+    </div>
+  </div>
+
 
 
 

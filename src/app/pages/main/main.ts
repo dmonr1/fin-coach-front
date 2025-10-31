@@ -6,30 +6,53 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './main.html',
-  styleUrl: './main.scss',
+  styleUrls: ['./main.scss'], // corregido styleUrls
 })
 export class Main implements OnInit, OnDestroy {
-  
-  images: string[] = [
-    'assets/imga.jpg',
-    'assets/img2.jpg',
-    'assets/img3.jpg'
+  // Carrusel hero
+  images = ['/assets/her1.png', '/assets/her2.png', '/assets/her3.png'];
+  currentIndex = 0;
+  intervalId: any;
+
+  // Servicios
+  services = [
+    { icon: 'savings', title: 'Ahorro', text: 'Aprende a ahorrar de forma eficiente.' },
+    { icon: 'trending_up', title: 'Inversiones', text: 'Invierte con estrategias reales.' },
+    { icon: 'shield', title: 'Seguridad financiera', text: 'Protege tu futuro económico.' },
+    { icon: 'calculate', title: 'Planificación', text: 'Define objetivos y metas claras.' },
+    { icon: 'credit_card', title: 'Crédito', text: 'Mejora tu acceso crediticio.' },
+    { icon: 'school', title: 'Educación financiera', text: 'Cursos y capacitaciones.' },
   ];
 
-  currentIndex = 0;
-  interval: any;
+  // Promo
+  promoSmallImages = [
+    '/assets/f1.jpg',
+    '/assets/f2.jpg',
+    '/assets/f3.jpg',
+    '/assets/f4.jpg'
+  ];
+  promoBigImage = '/assets/f6.jpg';
 
-  ngOnInit(): void {
-    this.interval = setInterval(() => {
+  ngOnInit() {
+    // Autoplay del carrusel
+    this.intervalId = setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.images.length;
-    }, 3000);
+    }, 5000);
   }
 
-  ngOnDestroy(): void {
-    clearInterval(this.interval);
+  goToSlide(i: number) {
+    this.currentIndex = i;
   }
 
-  goToSlide(index: number) {
-    this.currentIndex = index;
+  get transformValue(): string {
+    return `translateX(-${this.currentIndex * 100}%)`;
+  }
+
+  nextSlide() {
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
   }
 }
