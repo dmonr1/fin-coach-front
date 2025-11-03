@@ -148,4 +148,9 @@ export class Main implements OnInit, OnDestroy, AfterViewInit {
   get transformValue(): string {
     return `translateX(-${this.currentIndex * 100}%)`;
   }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
 }
