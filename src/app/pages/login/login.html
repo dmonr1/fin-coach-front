@@ -1,0 +1,65 @@
+<div class="login-wrapper">
+  <div class="login-left">
+    <h1 class="brand-title">CheKa</h1>
+    <p class="brand-subtitle">Tu asistente inteligente para organizar, planificar y avanzar hacia tus metas.</p>
+  </div>
+  <div class="login-right">
+    <button class="btn-back" (click)="goBack()">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <ng-container *ngIf="!isRegisterMode; else registerTpl">
+      <h2 class="login-title">¡Bienvenido de vuelta!</h2>
+      <p class="login-subtitle">Inicia sesión para continuar</p>
+      <form (ngSubmit)="login()" [formGroup]="loginForm" class="form-container">
+        <input class="input-box" placeholder="Correo electrónico" formControlName="email">
+        <input class="input-box" type="password" placeholder="Contraseña" formControlName="password">
+        <div class="captcha-row">
+          <div class="captcha-code">{{ captchaText }}</div>
+          <div class="captcha-separator"></div>
+          <input class="captcha-input" formControlName="captcha" placeholder="Código">
+          <button type="button" class="captcha-reload" (click)="generateCaptcha()">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </button>
+        </div>
+        <button class="btn-login" type="submit">Ingresar</button>
+        <button type="button" class="google-btn" (click)="loginGoogle()">
+          <i class="fa-brands fa-google icon-google"></i> Continuar con Google
+        </button>
+        <div class="register">
+          ¿No tienes cuenta?
+          <a (click)="goToRegister()">Regístrate</a>
+        </div>
+      </form>
+      <div class="timer-box" [ngClass]="{ 'alert': seconds <= 10 }">
+        Se regresará en <b>{{ seconds }}</b> segundos
+        <i class="fa-solid fa-hourglass-half"></i>
+      </div>
+    </ng-container>
+
+    <ng-template #registerTpl>
+
+      <h2 class="login-title">Crea tu cuenta</h2>
+      <p class="login-subtitle">Es rápido y sencillo</p>
+      <form (ngSubmit)="register()" [formGroup]="registerForm" class="form-container">
+        <input class="input-box" placeholder="Nombres" formControlName="name">
+        <input class="input-box" placeholder="Apellidos" formControlName="lastname">
+        <input class="input-box" placeholder="Correo electrónico" formControlName="email" type="email">
+        <input class="input-box" type="password" placeholder="Contraseña" formControlName="password">
+        <input class="input-box" type="password" placeholder="Confirmar contraseña" formControlName="confirmPassword">
+
+        <button class="btn-login" type="submit">Registrarme</button>
+
+        <button type="button" class="google-btn" (click)="loginGoogle()">
+          <i class="fa-brands fa-google icon-google"></i> Crear cuenta con Google
+        </button>
+
+        <div class="register">
+          ¿Ya tienes cuenta?
+          <a (click)="goToLogin()">Inicia sesión</a>
+        </div>
+      </form>
+    </ng-template>
+  </div>
+</div>
+
+<app-toast-notification #toast></app-toast-notification>

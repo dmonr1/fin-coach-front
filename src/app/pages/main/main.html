@@ -7,15 +7,16 @@
       </div>
 
       <div class="menu">
-        <a href="#">Inicio</a>
-        <a href="#">Planes</a>
-        <a href="#">Blog</a>
-        <a href="#">Contacto</a>
+        <a (click)="scrollTo('servicios')">Servicios</a>
+        <a (click)="scrollTo('promociones')">Promociones</a>
+        <a (click)="scrollTo('indicadores')">Indicadores</a>
+        <a (click)="scrollTo('planes')">Planes</a>
       </div>
 
+
       <div class="actions">
-        <button class="btn-outline">Ingresar</button>
-        <button class="btn-primary">Registrarse</button>
+        <button class="btn-outline" (click)="goLogin()">Ingresar</button>
+        <button class="btn-primary" (click)="goRegister()">Registrarse</button>
       </div>
     </div>
   </div>
@@ -31,7 +32,7 @@
     </div>
   </div>
 
-  <div class="services-section">
+  <div class="services-section" id="servicios">
     <div class="services-inner">
       <div class="section-badge">SERVICIOS</div>
       <div class="services-container">
@@ -57,7 +58,7 @@
     </div>
   </div>
 
-  <div class="promo-section">
+  <div class="promo-section" id="promociones">
     <div class="promo-inner">
       <div class="section-badge-blanco">PROMOCIONES</div>
       <div class="promo-container">
@@ -98,7 +99,7 @@
     </div>
   </div>
 
-  <div class="indicators-wrapper" #indicatorsSection>
+  <div class="indicators-wrapper" #indicatorsSection id="indicadores">
     <div class="indicators-inner">
       <div class="section-badge">INDICADORES</div>
       <div class="indicators-header">
@@ -133,7 +134,7 @@
     </div>
   </div>
 
-  <div class="plans-section">
+  <div class="plans-section" id="planes">
     <div class="plans-inner">
       <div class="section-badge-blanco">PLANES</div>
 
@@ -141,8 +142,9 @@
       <p class="plans-subtitle">Comienza a mejorar tus finanzas hoy mismo con el plan que se adapta a tus necesidades.
       </p>
 
-      <div class="plans-container">
-        <div class="plan-card" *ngFor="let plan of plans">
+      <div class="plans-container" #plansSection>
+        <div class="plan-card" *ngFor="let plan of plans; let i = index" [ngClass]="{ 'visible': plansVisible }"
+          [style.transitionDelay]="(i * 0.15) + 's'">
           <div class="plan-inner">
 
             <div class="cont-top">
@@ -154,8 +156,6 @@
               <div class="plan-price">{{ plan.price }} <a class="plan-mes">/mes</a></div>
               <p class="plan-desc">{{ plan.description }}</p>
             </div>
-
-
             <ul class="plan-features">
               <li *ngFor="let feature of plan.features">
                 <i [class]="feature.available ? 'check fas fa-check' : 'cross fas fa-times'"></i>
@@ -176,13 +176,11 @@
   </div>
 </div>
 
-<!-- Borde separador con botón de subir -->
 <div class="scroll-top-wrapper">
   <div class="scroll-top-circle" (click)="scrollToTop()">
     <i class="fas fa-arrow-up"></i>
   </div>
 </div>
-
 
 <footer class="app-footer">
   <div class="footer-inner">

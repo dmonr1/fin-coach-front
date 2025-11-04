@@ -1,58 +1,113 @@
-<div *ngIf="isLoginPage(); else mainLayout">
+<div *ngIf="isMainPage(); else mainLayout">
   <router-outlet></router-outlet>
 </div>
 <ng-template #mainLayout>
   <nz-layout class="app-layout">
-    <nz-sider class="menu-sidebar"
-      nzCollapsible
-      nzWidth="256px"
-      nzBreakpoint="md"
-      [(nzCollapsed)]="isCollapsed"
-      [nzTrigger]="null"
-    >
-      <div class="sidebar-logo">
-        <a href="https://ng.ant.design/" target="_blank">
-          <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-          <h1>Ant Design of Angular</h1>
-        </a>
-      </div>
-      <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-        <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-          <ul>
-            <li nz-menu-item nzMatchRouter>
-              <a routerLink="/welcome">Welcome</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-              <a routerLink="/main">Monitor</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-              <a>Workplace</a>
-            </li>
-          </ul>
-        </li>
-        <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-          <ul>
-            <li nz-menu-item nzMatchRouter>
-              <a>Basic Form</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </nz-sider>
     <nz-layout>
-      <nz-header>
-        <div class="app-header">
-          <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <nz-icon class="trigger" [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" />
-          </span>
-        </div>
-      </nz-header>
+  
+
       <nz-content>
-        <div class="inner-content">
-          <router-outlet></router-outlet>
+        <div class="horizontal-wrapper" [class.sidebar-open]="!isCollapsed">
+      
+          <!-- SIDEBAR EXISTENTE -->
+          <div class="custom-sidebar" [class.active]="!isCollapsed">
+            <div class="sidebar-header">
+              <div class="logo-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"
+                   (click)="toggleSidebar()">
+                <nz-icon *ngIf="isCollapsed" class="hover-icon" [nzType]="'menu-unfold'" nzTheme="outline">
+                </nz-icon>
+              </div>
+              <span class="sidebar-title" *ngIf="!isCollapsed">CheKa</span>
+              <span class="header-trigger-side" *ngIf="!isCollapsed" (click)="isCollapsed = !isCollapsed">
+                <nz-icon class="trigger" [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></nz-icon>
+              </span>
+            </div>
+      
+            <ul class="sidebar-menu">
+              <li routerLink="/welcome" routerLinkActive="active">
+                <i class="fas fa-home"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Welcome</span>
+              </li>
+      
+              <li routerLink="/main" routerLinkActive="active">
+                <i class="fas fa-chart-simple"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Main</span>
+              </li>
+      
+              <li class="has-submenu" (click)="!isCollapsed && toggleConfig()"
+                  (mouseenter)="isCollapsed && onMouseEnterItem('config')"
+                  (mouseleave)="isCollapsed && onMouseLeaveItem('config')" style="position: relative;">
+                <i class="fas fa-cogs"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Configuración</span>
+                <i class="fa-solid fa-chevron-down submenu-icon" [class.rotated]="configExpanded && !isCollapsed"
+                   *ngIf="!isCollapsed"></i>
+      
+                <div class="flyout-submenu" *ngIf="isCollapsed && hoveredItem==='config'"
+                     (mouseenter)="onMouseEnterFlyout('config')" (mouseleave)="onMouseLeaveFlyout('config')">
+                  <li routerLink="/gestion-privilegios">Gestión de Privilegios</li>
+                  <li routerLink="/gestion-roles">Asignación de Privilegios</li>
+                  <li routerLink="/motivos">Motivos</li>
+                  <li routerLink="/usuario-responsable">Personal Técnico</li>
+                </div>
+              </li>
+      
+              <ul class="submenu" *ngIf="configExpanded && !isCollapsed">
+                <li routerLink="/gestion-privilegios" routerLinkActive="active">
+                  <span class="menu-text">Gestión Privilegios</span>
+                </li>
+                <li routerLink="/gestion-roles" routerLinkActive="active">
+                  <span class="menu-text">Asignación de Privilegios</span>
+                </li>
+                <li routerLink="/motivos" routerLinkActive="active">
+                  <span class="menu-text">Motivos</span>
+                </li>
+                <li routerLink="/usuario-responsable" routerLinkActive="active">
+                  <span class="menu-text">Personal Técnico</span>
+                </li>
+              </ul>
+      
+              <li class="darkmode-item">
+                <i class="fas fa-moon" (click)="isCollapsed && toggleDarkModeFromIcon()"
+                   [class.clickable]="isCollapsed"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Modo oscuro</span>
+                <label class="switch" *ngIf="!isCollapsed">
+                  <input type="checkbox" [checked]="isDarkMode" (change)="toggleDarkMode($event)">
+                  <span class="slider">
+                    <i class="fa-solid fa-sun"></i>
+                    <i class="fa-solid fa-moon"></i>
+                  </span>
+                </label>
+              </li>
+      
+              <li (click)="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Salir</span>
+              </li>
+            </ul>
+          </div>
+      
+          <!-- CONTENIDO PRINCIPAL -->
+          <div class="content-wrapper">
+            
+            <!-- HEADER CUSTOM -->
+            <div class="custom-header">
+              
+      
+              
+      
+              
+            </div>
+      
+            <!-- INNER CONTENT -->
+            <div class="inner-content">
+              <router-outlet></router-outlet>
+            </div>
+            
+          </div>
+      
         </div>
       </nz-content>
+      
     </nz-layout>
   </nz-layout>
-  
 </ng-template>

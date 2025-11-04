@@ -5,6 +5,7 @@ import { Servicios } from '../../interfaces/servicios';
 import { PromoImage } from '../../interfaces/promoImage';
 import { Plan } from '../../interfaces/planes';
 import { Feature } from '../../interfaces/features';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -20,8 +21,15 @@ export class Main implements OnInit, OnDestroy, AfterViewInit {
   currentIndex = 0;
   intervalId: any;
 
+  @ViewChild('plansSection', { static: false }) plansSection!: ElementRef;
+  plansVisible = false;
+
   @ViewChild('indicatorsSection') indicatorsSection!: ElementRef;
   private hasAnimated = false;
+
+  constructor(private router: Router) {
+
+  }
 
   indicators: Indicador[] = [
     { title: 'Balance total', value: 12450, animated: 0, prefix: 'S/ ', badge: 'Actual', type: '', icon: 'fas fa-wallet' },
@@ -95,22 +103,55 @@ export class Main implements OnInit, OnDestroy, AfterViewInit {
     }
   ];
 
+  goLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  goRegister() {
+    this.router.navigate(['/login'], { queryParams: { mode: 'register' } });
+  }
+
   ngOnInit() {
     this.intervalId = setInterval(() => {
       this.nextSlide();
     }, 5000);
   }
 
-  ngAfterViewInit() {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && !this.hasAnimated) {
-        this.hasAnimated = true;
-        this.indicators.forEach(i => this.animateNumber(i));
-      }
-    }, { threshold: 0.35 });
-
-    observer.observe(this.indicatorsSection.nativeElement);
+  scrollTo(sectionId: string) {
+    document.getElementById(sectionId)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
   }
+
+  ngAfterViewInit() {
+    const observerIndicators = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !this.hasAnimated) {
+          this.hasAnimated = true;
+          this.indicators.forEach(i => this.animateNumber(i));
+          observerIndicators.disconnect();
+        }
+      },
+      { threshold: 0.35 }
+    );
+    observerIndicators.observe(this.indicatorsSection.nativeElement);
+
+    const observerPlans = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          this.plansVisible = true; 
+          observerPlans.disconnect(); 
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (this.plansSection) {
+      observerPlans.observe(this.plansSection.nativeElement);
+    }
+  }
+
 
   ngOnDestroy() {
     clearInterval(this.intervalId);
@@ -152,5 +193,5 @@ export class Main implements OnInit, OnDestroy, AfterViewInit {
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  
+
 }

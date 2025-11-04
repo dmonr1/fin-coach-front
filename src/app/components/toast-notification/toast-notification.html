@@ -1,0 +1,10 @@
+<div class="toast" [class.show]="visible">
+    <div class="toast-line" [ngStyle]="{'background-color': borderColor}"></div>
+
+    <div class="toast-content" [ngStyle]="{'color': textColor}">
+        <div class="icon">
+            <i [ngClass]="iconClass"></i>
+        </div>
+        <div class="text">{{ message }}</div>
+    </div>
+</div>

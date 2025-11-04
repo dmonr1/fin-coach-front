@@ -1,0 +1,364 @@
+.login-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    font-family: 'Inter', sans-serif;
+}
+
+.login-left {
+    width: 60%;
+    background: #89d631;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.brand-title {
+    font-size: 70px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.brand-subtitle {
+    font-size: 20px;
+    opacity: 0.8;
+}
+
+.login-right {
+    width: 40%;
+    background: #ffffff;
+    padding: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.btn-back {
+    position: absolute;
+    top: 40px;
+    left: 22px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: #ffffff;
+    color: #89d631;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease;
+}
+
+.btn-back:hover {
+    transform: scale(1.07);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.timer-box {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #2d3e50;
+    font-size: 15px;
+    font-weight: 500;
+    width: 100%;
+}
+
+.timer-box i {
+    font-size: 18px;
+    transition: .3s;
+}
+
+.timer-box.alert i {
+    animation: tilt .4s infinite alternate;
+    color: #d9534f;
+}
+
+@keyframes tilt {
+    from {
+        transform: rotate(12deg);
+    }
+
+    to {
+        transform: rotate(-12deg);
+    }
+}
+
+.login-title {
+    font-size: 35px;
+    font-weight: 800;
+    color: #89d631;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.login-subtitle {
+    font-size: 18px;
+    color: #2d3e50;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-box {
+    width: 400px;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1.8px solid #dcdcdc;
+    background: #f9fafb;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.input-box:focus {
+    border-color: #89d631;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(137, 214, 49, 0.27);
+    outline: none;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    background: #89d631;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: 0.2s;
+    box-shadow: 0 2px 6px rgba(82, 112, 148, 0.18), 0 1px 3px rgba(82, 112, 148, 0.1);
+}
+
+.btn-login:hover {
+    background: #7ac22b;
+    box-shadow: 0 6px 14px rgba(137, 214, 49, 0.3);
+}
+
+.google-btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1.8px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.2s;
+    margin-bottom: 10px;
+}
+
+.google-btn:hover {
+    background: #f3f3f3;
+}
+
+.register {
+    margin-top: 12px;
+    font-size: 15px;
+}
+
+.captcha-row {
+    display: flex;
+    align-items: center;
+    border: 2px solid #dce3eb;
+    border-radius: 10px;
+    background: #f9fafb;
+    padding: 8px 12px;
+    gap: 12px;
+    margin-bottom: 14px;
+    width: 400px;
+}
+
+.captcha-code {
+    font-family: monospace;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: #2d3e50;
+}
+
+.captcha-separator {
+    width: 2px;
+    height: 28px;
+    background: #dcdcdc;
+}
+
+.captcha-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.captcha-input::placeholder {
+    color: #9ca3af;
+}
+
+.captcha-reload {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #6fb52d;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.captcha-reload:hover {
+    color: #4d8f21;
+    transform: rotate(90deg);
+}
+
+.captcha-error {
+    font-size: 14px;
+    color: #d9534f;
+    font-weight: 600;
+    margin-top: -6px;
+    margin-bottom: 6px;
+}
+
+.icon-google {
+    color: #eb9516;
+}
+
+@media (max-width: 992px) {
+    .login-wrapper {
+        min-height: 100vh;
+        height: auto;
+    }
+
+    .login-left {
+        display: none !important;
+    }
+
+    .login-right {
+        width: 100vw;
+        min-height: 100vh;
+        padding: 35px 25px;
+        justify-content: center;
+        display: flex;
+    }
+
+    .form-container {
+        width: 90%;
+        max-width: 480px;
+    }
+
+    .captcha-row,
+    .input-box {
+        width: 100%;
+    }
+
+    .captcha-box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .btn-back {
+        top: 20px;
+    }
+
+    .login-right {
+        padding: 25px 18px;
+        align-items: center;
+    }
+
+    .login-title {
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .login-subtitle {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 380px;
+    }
+
+    .input-box input,
+    .captcha-input {
+        font-size: 13px;
+    }
+
+    .timer-box {
+        margin-top: 20px;
+        display: flex;
+        font-size: 12px;
+        width: 80%;
+    }
+
+    .btn-login {
+        margin-top: 0px;
+        margin-bottom: 15px;
+        padding: 0px;
+        font-size: 14px;
+    }
+
+    .google-btn {
+        margin-top: 0px;
+        padding: 0px;
+        font-size: 14px;
+    }
+
+    .captcha-row,
+    .input-box {
+        height: 50px;
+        font-size: 14px;
+    }
+
+    .captcha-row {
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        height: 50px;
+
+    }
+
+    .captcha-box {
+        font-size: 20px;
+        padding: 8px 12px;
+    }
+
+    .captcha-input {
+        flex: 1;
+    }
+
+    .captcha-refresh {
+        font-size: 20px;
+        padding: 0 8px;
+    }
+
+    button {
+        height: 42px;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+}

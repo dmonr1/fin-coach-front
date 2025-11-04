@@ -1,0 +1,48 @@
+.toast {
+    position: fixed;
+    top: 22px;
+    right: -400px;
+    display: flex;
+    min-width: 300px;
+    max-width: 400px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 2000;
+    overflow: hidden;
+    align-items: stretch;
+}
+
+.toast.show {
+    right: 10px;
+    opacity: 1;
+}
+
+.toast-line {
+    width: 3%;
+    min-width: 6px;
+    background-color: currentColor;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 12px;
+    width: 96%;
+}
+
+.icon {
+    font-size: 18px;
+}
+
+.text {
+    flex: 1;
+    font-weight: 500;
+    white-space: nowrap;
+    padding-right: 10px;
+}
