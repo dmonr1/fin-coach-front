@@ -5,9 +5,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ant-layout {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  min-height: 0;
+  background: #ffffff !important;
+}
+
 .app-layout {
   height: 100vh;
-  background: #cbe0ff;
+  background: #ffffff !important;
 }
 
 .content-wrapper {
@@ -17,65 +25,59 @@
 }
 
 .custom-header {
+  height: 65px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  padding: 0 20px;
-  height: 60px;
-  background: #89d631;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  position: sticky;
-  top: 0;
-  z-index: 500;
+  padding: 0 25px;
+  background: #ffffff;
+  box-shadow: none;
+  border-bottom: none !important;
+}
 
-  .header-left .header-logo {
-    font-weight: bold;
-    font-size: 22px;
-    cursor: pointer;
-    color: #89d631;
-  }
+.header-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  .header-menu {
-    display: flex;
-    gap: 25px;
-    a {
-      font-weight: 500;
-      color: #2d3e50;
-      cursor: pointer;
-      transition: color 0.2s;
-      &:hover {
-        color: #89d631;
-      }
-    }
-  }
+.user-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.4;
+}
 
-  .header-actions {
-    display: flex;
-    gap: 12px;
+.user-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #292929;
+}
 
-    .btn-outline {
-      border: 2px solid #89d631;
-      background: transparent;
-      color: #89d631;
-      border-radius: 6px;
-      padding: 6px 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      &:hover { background: #89d63122; }
-    }
+.user-username {
+  font-size: 12.5px;
+  color: #6e6e6e;
+}
 
-    .btn-primary {
-      background: #89d631;
-      color: #fff;
-      padding: 6px 16px;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      &:hover { background: #73ca0f; }
-    }
-  }
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #89d631;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  width: 60px;
+  height: 38px;
+  object-fit: cover;
 }
 
 
@@ -108,14 +110,16 @@
   overflow: hidden;
   color: #000000;
   background: #89d631;
-
+  z-index: 999;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 18px;
   box-shadow:
     inset 0 0 8px rgba(108, 123, 255, 0.15),
     0 0 8px rgba(50, 53, 129, 0.25),
     0 0 15px rgba(108, 123, 255, 0.2);
 
   &.active {
-    width: 285px;
+    width: 260px;
     overflow: hidden;
   }
 
@@ -166,7 +170,7 @@
   justify-content: space-between;
   padding: 0 15px;
   margin-top: 3px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 
   .sidebar-logo {
     width: 30px;
@@ -216,12 +220,13 @@
     padding: 16px 22px;
     cursor: pointer;
     font-size: 16px;
+    font-weight: 500;
     color: #2b2b2b;
     transition: background 0.3s;
 
     i {
       font-size: 17px;
-      min-width: 24px;
+      min-width: 0;
       text-align: center;
     }
 
@@ -231,6 +236,36 @@
     }
   }
 
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 40%;
+
+  .logo-img {
+    width: 60px;
+    height: 38px;
+  }
+}
+
+.custom-sidebar:not(.active) .logo-container {
+  margin-left: 0 !important;
+  width: 40px !important;
+  height: 40px !important;
+
+  .logo-img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+.custom-sidebar:not(.active) .sidebar-header {
+  justify-content: center !important;
 }
 
 .menu-text {
@@ -268,7 +303,7 @@
 
   .submenu-icon {
     transition: transform 0.3s;
-    margin-left: 60px;
+    margin-left: 45px;
     font-size: 12px !important;
   }
 
@@ -385,7 +420,6 @@ input:checked+.switch {
   background: #fff;
   padding: 25px;
   transition: margin-left 0.2s ease;
-  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
 }
 
 .horizontal-wrapper {

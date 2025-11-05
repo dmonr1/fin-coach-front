@@ -4,110 +4,103 @@
 <ng-template #mainLayout>
   <nz-layout class="app-layout">
     <nz-layout>
-  
 
       <nz-content>
         <div class="horizontal-wrapper" [class.sidebar-open]="!isCollapsed">
-      
-          <!-- SIDEBAR EXISTENTE -->
+
           <div class="custom-sidebar" [class.active]="!isCollapsed">
             <div class="sidebar-header">
-              <div class="logo-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"
-                   (click)="toggleSidebar()">
-                <nz-icon *ngIf="isCollapsed" class="hover-icon" [nzType]="'menu-unfold'" nzTheme="outline">
-                </nz-icon>
+
+              <div class="logo-container" (click)="toggleSidebar()">
+                <img src="assets/logo-blanco.png" alt="Logo" class="logo-img" />
               </div>
-              <span class="sidebar-title" *ngIf="!isCollapsed">CheKa</span>
-              <span class="header-trigger-side" *ngIf="!isCollapsed" (click)="isCollapsed = !isCollapsed">
+
+              <span class="header-trigger-side" *ngIf="!isCollapsed" (click)="toggleSidebar()">
                 <nz-icon class="trigger" [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></nz-icon>
               </span>
+
             </div>
-      
+
             <ul class="sidebar-menu">
               <li routerLink="/welcome" routerLinkActive="active">
                 <i class="fas fa-home"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Welcome</span>
               </li>
-      
+
               <li routerLink="/main" routerLinkActive="active">
                 <i class="fas fa-chart-simple"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Main</span>
               </li>
-      
+
               <li class="has-submenu" (click)="!isCollapsed && toggleConfig()"
-                  (mouseenter)="isCollapsed && onMouseEnterItem('config')"
-                  (mouseleave)="isCollapsed && onMouseLeaveItem('config')" style="position: relative;">
+                (mouseenter)="isCollapsed && onMouseEnterItem('config')"
+                (mouseleave)="isCollapsed && onMouseLeaveItem('config')" style="position: relative;">
                 <i class="fas fa-cogs"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Configuración</span>
                 <i class="fa-solid fa-chevron-down submenu-icon" [class.rotated]="configExpanded && !isCollapsed"
-                   *ngIf="!isCollapsed"></i>
-      
+                  *ngIf="!isCollapsed"></i>
+
                 <div class="flyout-submenu" *ngIf="isCollapsed && hoveredItem==='config'"
-                     (mouseenter)="onMouseEnterFlyout('config')" (mouseleave)="onMouseLeaveFlyout('config')">
+                  (mouseenter)="onMouseEnterFlyout('config')" (mouseleave)="onMouseLeaveFlyout('config')">
                   <li routerLink="/gestion-privilegios">Gestión de Privilegios</li>
                   <li routerLink="/gestion-roles">Asignación de Privilegios</li>
                   <li routerLink="/motivos">Motivos</li>
                   <li routerLink="/usuario-responsable">Personal Técnico</li>
                 </div>
               </li>
-      
-              <ul class="submenu" *ngIf="configExpanded && !isCollapsed">
-                <li routerLink="/gestion-privilegios" routerLinkActive="active">
-                  <span class="menu-text">Gestión Privilegios</span>
-                </li>
-                <li routerLink="/gestion-roles" routerLinkActive="active">
-                  <span class="menu-text">Asignación de Privilegios</span>
-                </li>
-                <li routerLink="/motivos" routerLinkActive="active">
-                  <span class="menu-text">Motivos</span>
-                </li>
-                <li routerLink="/usuario-responsable" routerLinkActive="active">
-                  <span class="menu-text">Personal Técnico</span>
-                </li>
-              </ul>
-      
-              <li class="darkmode-item">
-                <i class="fas fa-moon" (click)="isCollapsed && toggleDarkModeFromIcon()"
-                   [class.clickable]="isCollapsed"></i>
-                <span class="menu-text" [class.hidden]="isCollapsed">Modo oscuro</span>
-                <label class="switch" *ngIf="!isCollapsed">
-                  <input type="checkbox" [checked]="isDarkMode" (change)="toggleDarkMode($event)">
-                  <span class="slider">
-                    <i class="fa-solid fa-sun"></i>
-                    <i class="fa-solid fa-moon"></i>
-                  </span>
-                </label>
+
+            <ul class="submenu" *ngIf="configExpanded && !isCollapsed">
+              <li routerLink="/gestion-privilegios" routerLinkActive="active">
+                <span class="menu-text">Gestión Privilegios</span>
               </li>
-      
-              <li (click)="logout()">
-                <i class="fas fa-sign-out-alt"></i>
-                <span class="menu-text" [class.hidden]="isCollapsed">Salir</span>
+              <li routerLink="/gestion-roles" routerLinkActive="active">
+                <span class="menu-text">Asignación de Privilegios</span>
+              </li>
+              <li routerLink="/motivos" routerLinkActive="active">
+                <span class="menu-text">Motivos</span>
+              </li>
+              <li routerLink="/usuario-responsable" routerLinkActive="active">
+                <span class="menu-text">Personal Técnico</span>
               </li>
             </ul>
-          </div>
-      
-          <!-- CONTENIDO PRINCIPAL -->
-          <div class="content-wrapper">
-            
-            <!-- HEADER CUSTOM -->
-            <div class="custom-header">
-              
-      
-              
-      
-              
+
+          <li class="darkmode-item">
+            <i class="fas fa-moon" (click)="isCollapsed && toggleDarkModeFromIcon()"
+              [class.clickable]="isCollapsed"></i>
+            <span class="menu-text" [class.hidden]="isCollapsed">Modo oscuro</span>
+            <label class="switch" *ngIf="!isCollapsed">
+              <input type="checkbox" [checked]="isDarkMode" (change)="toggleDarkMode($event)">
+              <span class="slider">
+                <i class="fa-solid fa-sun"></i>
+                <i class="fa-solid fa-moon"></i>
+              </span>
+            </label>
+          </li>
+          <li (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="menu-text" [class.hidden]="isCollapsed">Salir</span>
+          </li>
+          </ul>
+        </div>
+
+
+        
+        <div class="content-wrapper">
+          <div class="custom-header">
+            <div class="header-user-info">
+              <div class="user-text">
+                <span class="user-name">Diego David Rutti Aliaga</span>
+                <span class="user-username">@drutti</span>
+              </div>
+              <img class="user-avatar" src="assets/user.png" alt="User Avatar" />
             </div>
-      
-            <!-- INNER CONTENT -->
-            <div class="inner-content">
-              <router-outlet></router-outlet>
-            </div>
-            
           </div>
-      
+          <div class="inner-content">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
         </div>
       </nz-content>
-      
     </nz-layout>
   </nz-layout>
 </ng-template>
