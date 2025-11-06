@@ -1,0 +1,507 @@
+:host {
+    display: block;
+    height: 100%;
+    font-family: Inter, sans-serif;
+}
+/* ===== BASE ===== */
+.panel-root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0px 20px 20px 20px;
+    background: linear-gradient(180deg, #f9fcf6 0%, #f5f9ef 100%);
+    overflow: hidden; /* ← evita desbordes */
+}
+
+.grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.2fr 0.5fr;
+    gap: 22px;
+    min-height: 0; /* ← CLAVE para evitar overflow */
+    overflow: hidden;
+}
+
+/* ===== HEADER ===== */
+/* Header fijo arriba */
+.panel-header {
+    flex: 0 0 auto;
+    margin-bottom: 15px;
+    flex-direction: column;
+}
+
+
+.grid > div {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.title-pa {
+    font-size: 28px;
+    font-weight: 800;
+    color: #89d631;
+}
+
+.subtitle-pa {
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 500;
+    letter-spacing: .2px;
+  }
+  
+
+.btn-primary:hover {
+    background: #7bc128;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border: 1px solid #89d631;
+    color: #89d631;
+    background: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    font-size: 13px;
+    color: #89d631;
+    cursor: pointer;
+}
+
+/* ===== CARD ===== */
+.card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .07);
+    border: 1px solid rgba(0, 0, 0, .03);
+    
+}
+
+
+/* KPIs container */
+.cards-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    height: 20%;
+}
+
+/* KPI card */
+.card.kpi {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+    transition: all .2s ease;
+}
+
+/* Hover animation */
+.card.kpi:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.06);
+}
+
+/* Top: title + value */
+.kpi-top {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.kpi-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.kpi-value {
+    font-size: 26px;
+    font-weight: 800;
+    color: #111827;
+}
+
+/* Subtitle */
+.kpi-sub {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Icon section */
+.kpi-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Colors by type */
+.kpi-income {
+    background: rgba(34,197,94,0.12);
+    color: #16a34a;
+}
+
+.kpi-expense {
+    background: rgba(239,68,68,0.12);
+    color: #dc2626;
+}
+
+.kpi-warning {
+    background: rgba(234,179,8,0.12);
+    color: #ca8a04;
+}
+
+.kpi-info {
+    background: rgba(59,130,246,0.12);
+    color: #2563eb;
+}
+
+
+/* ===== CHARTS ===== */
+.three-charts.big {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 16px 0;
+    height: 45%;
+}
+
+.chart-big {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed #dfe6e0;
+    border-radius: 12px;
+    color: #8a939e;
+}
+
+/* ===== RIGHT COLUM (50/50) ===== */
+.col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.metas-card {
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.metas-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
+    overflow-y: auto;
+}
+
+.metas-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.metas-list li:hover {
+    background: rgba(137,214,49,0.1);
+}
+
+/* titulo de meta + porcentaje */
+.meta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.section-title{
+    font-weight: 700;
+}
+
+.meta-name {
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    color: #1f2937;
+}
+
+.meta-name i {
+    font-size: 16px;
+    color: #89d631;
+}
+
+.meta-percent {
+    font-size: 13px;
+    font-weight: 700;
+    color: #4b5563;
+}
+
+/* barra de progreso */
+.progress-bar {
+    height: 15px;
+    /* ✅ más gruesa */
+    width: 85%;
+    /* ✅ más corta */
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    background: linear-gradient(90deg, #66d17a, #31b66a);
+    border-radius: 10px;
+    transition: width .4s ease;
+}
+
+/* monto meta */
+.meta-details {
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+
+/* ===== ACTIVITY CARD ===== */
+.activity-card {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+}
+
+.card-head h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+/* LIST */
+.activity-list {
+    flex: 1;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.activity-list li {
+    display: flex;
+    align-items: center;
+    padding: 8px 6px;
+    border-radius: 10px;
+    transition: all .2s ease;
+    gap: 10px;
+}
+
+.activity-list li:hover {
+    background: rgba(137,214,49,0.1);
+}
+
+/* ICON */
+.activity-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(137,214,49,0.15);
+    font-size: 14px;
+}
+
+/* CREDIT / DEBIT COLORS */
+.activity-list li.debit .activity-icon {
+    background: rgba(220,53,69,0.12);
+    color: #dc3545;
+}
+
+.activity-list li.credit .activity-icon {
+    background: rgba(137,214,49,0.15);
+    color: #89d631;
+}
+
+/* TEXTS */
+.title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.subtitle {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.amount {
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* NEGATIVE / POSITIVE COLORS */
+.activity-list li.debit .amount {
+    color: #dc3545;
+}
+
+.activity-list li.credit .amount {
+    color: #89d631;
+}
+
+/* BUTTON */
+.btn-link {
+    background: none;
+    border: none;
+    color: #89d631;
+    padding: 8px 0;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    transition: .2s;
+}
+
+.btn-link:hover {
+    color: #76b62a;
+}
+
+
+/* ===== SUPPORT + PLAN ===== */
+.support-plan-row {
+    display: flex;
+    gap: 16px;
+    height: 28%
+
+}
+
+.support-plan-row .card {
+    flex: 1;
+}
+
+/* -------- PLAN CARD -------- */
+
+.plan-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: 100%;
+}
+
+.plan-header {
+    text-align: center;
+}
+
+.plan-badge {
+    background: #89d631;
+    color: white;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.plan-icon {
+    font-size: 28px;
+    color: #89d631;
+    margin-bottom: 6px;
+}
+
+.plan-header h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 2px 0;
+    color: #1e293b;
+}
+
+.plan-date {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* FEATURES */
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.plan-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #6b7280;
+    padding: 6px 0;
+}
+
+.plan-features li.active {
+    color: #1d4120;
+    font-weight: 600;
+}
+
+.plan-features i {
+    font-size: 15px;
+}
+
+/* ACTIVE VS INACTIVE ICONS */
+.plan-features li.active i {
+    color: #89d631;
+}
+
+.plan-features li:not(.active) i {
+    color: #d9534f;
+}
+
+/* BUTTON */
+
+.btn-upgrade {
+    border: none;
+    width: 100%;
+    background: #1e293b;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-upgrade:hover {
+    background: #89d631;
+}

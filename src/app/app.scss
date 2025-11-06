@@ -9,19 +9,15 @@
   display: flex;
   flex: auto;
   flex-direction: column;
-  min-height: 0;
   background: #ffffff !important;
-}
-
-.app-layout {
-  height: 100vh;
-  background: #ffffff !important;
+  overflow-x:auto ;
 }
 
 .content-wrapper {
   flex: 1;
   display: flex;
   flex-direction: column;
+
 }
 
 .custom-header {
@@ -96,19 +92,19 @@
 .horizontal-wrapper {
   position: relative;
   display: flex;
-  height: 100%;
+  
 }
 
 .custom-sidebar {
   position: relative;
   top: 0;
   left: 0;
-  height: 100%;
   width: 70px;
   padding: 10px 0;
   transition: width 0.3s ease;
   overflow: hidden;
   color: #000000;
+  height: 100vh;
   background: #89d631;
   z-index: 999;
   border-top-right-radius: 12px;
@@ -418,16 +414,20 @@ input:checked+.switch {
 .inner-content {
   flex: 1;
   background: #fff;
-  padding: 25px;
+  padding: 0px 25px 25px 25px;
   transition: margin-left 0.2s ease;
+
 }
 
 .horizontal-wrapper {
   display: flex;
+  height: 100vh;
 }
 
 .horizontal-wrapper .inner-content {
   margin-left: 0px;
+  overflow-y: auto;
+
 }
 
 .theme-switch {

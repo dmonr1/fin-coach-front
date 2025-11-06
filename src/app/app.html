@@ -18,87 +18,98 @@
               <span class="header-trigger-side" *ngIf="!isCollapsed" (click)="toggleSidebar()">
                 <nz-icon class="trigger" [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></nz-icon>
               </span>
-
             </div>
 
             <ul class="sidebar-menu">
-              <li routerLink="/welcome" routerLinkActive="active">
-                <i class="fas fa-home"></i>
-                <span class="menu-text" [class.hidden]="isCollapsed">Welcome</span>
+
+              <!-- Inicio -->
+              <li routerLink="/inicio" routerLinkActive="active">
+                <i class="fas fa-house"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Inicio</span>
               </li>
 
-              <li routerLink="/main" routerLinkActive="active">
-                <i class="fas fa-chart-simple"></i>
-                <span class="menu-text" [class.hidden]="isCollapsed">Main</span>
+              <!-- Metas -->
+              <li routerLink="/metas" routerLinkActive="active">
+                <i class="fas fa-bullseye"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Metas</span>
               </li>
 
-              <li class="has-submenu" (click)="!isCollapsed && toggleConfig()"
-                (mouseenter)="isCollapsed && onMouseEnterItem('config')"
-                (mouseleave)="isCollapsed && onMouseLeaveItem('config')" style="position: relative;">
-                <i class="fas fa-cogs"></i>
+              <!-- Tareas -->
+              <li routerLink="/tareas" routerLinkActive="active">
+                <i class="fas fa-list-check"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Tareas</span>
+              </li>
+
+              <!-- Finanzas -->
+              <li routerLink="/finanzas" routerLinkActive="active">
+                <i class="fas fa-wallet"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Finanzas</span>
+              </li>
+
+              <!-- Progreso -->
+              <li routerLink="/progreso" routerLinkActive="active">
+                <i class="fas fa-chart-line"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Progreso</span>
+              </li>
+
+              <!-- Historial -->
+              <li routerLink="/historial" routerLinkActive="active">
+                <i class="fas fa-clock-rotate-left"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Historial</span>
+              </li>
+
+              <!-- Perfil -->
+              <li routerLink="/perfil" routerLinkActive="active">
+                <i class="fas fa-user"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Perfil</span>
+              </li>
+
+              <!-- Configuración -->
+              <li routerLink="/perfil/configuracion" routerLinkActive="active">
+                <i class="fas fa-gear"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Configuración</span>
-                <i class="fa-solid fa-chevron-down submenu-icon" [class.rotated]="configExpanded && !isCollapsed"
-                  *ngIf="!isCollapsed"></i>
-
-                <div class="flyout-submenu" *ngIf="isCollapsed && hoveredItem==='config'"
-                  (mouseenter)="onMouseEnterFlyout('config')" (mouseleave)="onMouseLeaveFlyout('config')">
-                  <li routerLink="/gestion-privilegios">Gestión de Privilegios</li>
-                  <li routerLink="/gestion-roles">Asignación de Privilegios</li>
-                  <li routerLink="/motivos">Motivos</li>
-                  <li routerLink="/usuario-responsable">Personal Técnico</li>
-                </div>
               </li>
 
-            <ul class="submenu" *ngIf="configExpanded && !isCollapsed">
-              <li routerLink="/gestion-privilegios" routerLinkActive="active">
-                <span class="menu-text">Gestión Privilegios</span>
+              <!-- Darkmode -->
+              <li class="darkmode-item">
+                <i class="fas fa-moon" (click)="isCollapsed && toggleDarkModeFromIcon()"
+                  [class.clickable]="isCollapsed"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Modo oscuro</span>
+                <label class="switch" *ngIf="!isCollapsed">
+                  <input type="checkbox" [checked]="isDarkMode" (change)="toggleDarkMode($event)">
+                  <span class="slider">
+                    <i class="fa-solid fa-sun"></i>
+                    <i class="fa-solid fa-moon"></i>
+                  </span>
+                </label>
               </li>
-              <li routerLink="/gestion-roles" routerLinkActive="active">
-                <span class="menu-text">Asignación de Privilegios</span>
+
+              <!-- Logout -->
+              <li (click)="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="menu-text" [class.hidden]="isCollapsed">Salir</span>
               </li>
-              <li routerLink="/motivos" routerLinkActive="active">
-                <span class="menu-text">Motivos</span>
-              </li>
-              <li routerLink="/usuario-responsable" routerLinkActive="active">
-                <span class="menu-text">Personal Técnico</span>
-              </li>
+
             </ul>
-
-          <li class="darkmode-item">
-            <i class="fas fa-moon" (click)="isCollapsed && toggleDarkModeFromIcon()"
-              [class.clickable]="isCollapsed"></i>
-            <span class="menu-text" [class.hidden]="isCollapsed">Modo oscuro</span>
-            <label class="switch" *ngIf="!isCollapsed">
-              <input type="checkbox" [checked]="isDarkMode" (change)="toggleDarkMode($event)">
-              <span class="slider">
-                <i class="fa-solid fa-sun"></i>
-                <i class="fa-solid fa-moon"></i>
-              </span>
-            </label>
-          </li>
-          <li (click)="logout()">
-            <i class="fas fa-sign-out-alt"></i>
-            <span class="menu-text" [class.hidden]="isCollapsed">Salir</span>
-          </li>
-          </ul>
-        </div>
+          </div>
 
 
-        
-        <div class="content-wrapper">
-          <div class="custom-header">
-            <div class="header-user-info">
-              <div class="user-text">
-                <span class="user-name">Diego David Rutti Aliaga</span>
-                <span class="user-username">@drutti</span>
+
+
+          <div class="content-wrapper">
+            <div class="custom-header">
+              <div class="header-user-info">
+                <div class="user-text">
+                  <span class="user-name">Diego David Rutti Aliaga</span>
+                  <span class="user-username">@drutti</span>
+                </div>
+                <img class="user-avatar" src="assets/user.png" alt="User Avatar" />
               </div>
-              <img class="user-avatar" src="assets/user.png" alt="User Avatar" />
+            </div>
+            <div class="inner-content">
+              <router-outlet></router-outlet>
             </div>
           </div>
-          <div class="inner-content">
-            <router-outlet></router-outlet>
-          </div>
-        </div>
         </div>
       </nz-content>
     </nz-layout>

@@ -1,1 +1,130 @@
-<p>panel-inicial works!</p>
+<div class="panel-root">
+
+    <div class="panel-header">
+        <div>
+            <div class="title-pa">Tu espacio financiero</div>
+            <div class="subtitle-pa">Nos alegra tenerte aquí</div>
+        </div>
+    </div>
+
+    <div class="grid">
+
+        <div>
+
+            <div class="cards-row">
+                <div class="card kpi" *ngFor="let k of kpis">
+
+                    <div class="kpi-top">
+                        <div class="kpi-title">{{ k.title }}</div>
+                        <div class="kpi-value">{{ k.value }}</div>
+                        <div [class.positive]="k.positive" [class.negative]="k.negative" class="kpi-sub">
+                            {{ k.subtitle }}
+                        </div>
+                    </div>
+
+                    <div class="kpi-icon" [ngClass]="{
+                            'kpi-income': k.type === 'income',
+                            'kpi-expense': k.type === 'expense',
+                            'kpi-warning': k.type === 'warning',
+                            'kpi-info': k.type === 'info'
+                         }">
+                        <i class="fas" [class]="k.icon"></i>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Charts -->
+            <div class="three-charts big">
+                <div class="card chart-big">Gráfico 1</div>
+                <div class="card chart-big">Gráfico 3</div>
+            </div>
+
+            <!-- Support + Plan -->
+            <div class="support-plan-row">
+                <div class="card">
+                    <h3>Soporte</h3>
+                    <p>¿Necesitas ayuda?</p>
+                    <button class="btn-outline">Contactar</button>
+                </div>
+                <div class="plan-card">
+                    <div class="plan-header">
+                      <span class="plan-badge">{{ currentPlan.badge }}</span>
+                      <i [class]="currentPlan.icon" class="plan-icon"></i>
+                      <h4>{{ currentPlan.title }}</h4>
+                      <p class="plan-date">Válido hasta: {{ planEndDate }}</p>
+                    </div>
+                  
+                    <ul class="plan-features">
+                      <li *ngFor="let f of currentPlan.features" [class.active]="f.available">
+                        <i class="fas" [ngClass]="f.available ? 'fa-check-circle' : 'fa-times-circle'"></i>
+                        {{ f.name }}
+                      </li>
+                    </ul>
+                  
+                    <button class="btn-upgrade" (click)="goTo('planes')">
+                      Mejorar plan
+                    </button>
+                  </div>
+                  
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="col-right">
+
+            <div class="card activity-card">
+                <div class="card-head">
+                    <h3>Actividad reciente</h3>
+                </div>
+              
+                <ul class="activity-list">
+                    <li *ngFor="let t of recentTransactions" [class.debit]="t.type=='DEBIT'" [class.credit]="t.type=='CREDIT'">
+                        <div class="activity-icon">
+                            <i class="fas fa-arrow-down" *ngIf="t.type=='DEBIT'"></i>
+                            <i class="fas fa-arrow-up" *ngIf="t.type=='CREDIT'"></i>
+                        </div>
+                        
+                        <div class="info">
+                            <div class="title">{{ t.description }}</div>
+                            <div class="subtitle">{{ t.date | date:'dd MMM, HH:mm' }}</div>
+                        </div>
+              
+                        <span class="amount">
+                            {{ t.type=='DEBIT' ? '-' : '+' }} S/ {{ t.amount }}
+                        </span>
+                    </li>
+                </ul>
+              
+                <button class="btn-link" (click)="goTo('historial')">Ver todo</button>
+              </div>
+              
+
+            <div class="card metas-card">
+                <h3 class="section-title">Tus metas</h3>
+
+                <ul class="metas-list">
+                    <li *ngFor="let m of metas">
+                        <div class="meta-header">
+                            <div class="meta-name">
+                                <i class="fas" [class]="m.icon"></i> {{ m.nombre }}
+                            </div>
+                            <div class="meta-percent">{{ m.progreso }}%</div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="fill" [style.width.%]="m.progreso"></div>
+                        </div>
+
+                        <div class="meta-details">
+                            S/ {{ m.current }} de {{ m.target }}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
