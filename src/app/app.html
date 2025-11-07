@@ -22,55 +22,46 @@
 
             <ul class="sidebar-menu">
 
-              <!-- Inicio -->
               <li routerLink="/inicio" routerLinkActive="active">
                 <i class="fas fa-house"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Inicio</span>
               </li>
 
-              <!-- Metas -->
               <li routerLink="/metas" routerLinkActive="active">
                 <i class="fas fa-bullseye"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Metas</span>
               </li>
 
-              <!-- Tareas -->
               <li routerLink="/tareas" routerLinkActive="active">
                 <i class="fas fa-list-check"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Tareas</span>
               </li>
 
-              <!-- Finanzas -->
               <li routerLink="/finanzas" routerLinkActive="active">
                 <i class="fas fa-wallet"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Finanzas</span>
               </li>
 
-              <!-- Progreso -->
               <li routerLink="/progreso" routerLinkActive="active">
                 <i class="fas fa-chart-line"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Progreso</span>
               </li>
 
-              <!-- Historial -->
               <li routerLink="/historial" routerLinkActive="active">
                 <i class="fas fa-clock-rotate-left"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Historial</span>
               </li>
 
-              <!-- Perfil -->
               <li routerLink="/perfil" routerLinkActive="active">
                 <i class="fas fa-user"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Perfil</span>
               </li>
 
-              <!-- Configuración -->
               <li routerLink="/perfil/configuracion" routerLinkActive="active">
                 <i class="fas fa-gear"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Configuración</span>
               </li>
 
-              <!-- Darkmode -->
               <li class="darkmode-item">
                 <i class="fas fa-moon" (click)="isCollapsed && toggleDarkModeFromIcon()"
                   [class.clickable]="isCollapsed"></i>
@@ -84,7 +75,6 @@
                 </label>
               </li>
 
-              <!-- Logout -->
               <li (click)="logout()">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="menu-text" [class.hidden]="isCollapsed">Salir</span>
@@ -92,9 +82,6 @@
 
             </ul>
           </div>
-
-
-
 
           <div class="content-wrapper">
             <div class="custom-header">

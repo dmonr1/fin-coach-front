@@ -102,6 +102,7 @@ export class Main implements OnInit, OnDestroy, AfterViewInit {
       ]
     }
   ];
+  
 
   goLogin() {
     this.router.navigate(['/login']);

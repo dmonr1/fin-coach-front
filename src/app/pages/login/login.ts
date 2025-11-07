@@ -116,7 +116,7 @@ export class Login implements OnInit, OnDestroy {
     }
 
     this.toast.show('Acceso correcto', 'success');
-    this.router.navigate(['/welcome']);
+    this.router.navigate(['/inicio']);
   }
 
 

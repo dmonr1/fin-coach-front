@@ -1,19 +1,13 @@
 <div class="panel-root">
-
     <div class="panel-header">
         <div>
             <div class="title-pa">Tu espacio financiero</div>
-            <div class="subtitle-pa">Nos alegra tenerte aquí</div>
         </div>
     </div>
-
     <div class="grid">
-
         <div>
-
             <div class="cards-row">
                 <div class="card kpi" *ngFor="let k of kpis">
-
                     <div class="kpi-top">
                         <div class="kpi-title">{{ k.title }}</div>
                         <div class="kpi-value">{{ k.value }}</div>
@@ -21,7 +15,6 @@
                             {{ k.subtitle }}
                         </div>
                     </div>
-
                     <div class="kpi-icon" [ngClass]="{
                             'kpi-income': k.type === 'income',
                             'kpi-expense': k.type === 'expense',
@@ -32,79 +25,99 @@
                     </div>
                 </div>
             </div>
-
-
-
-            <!-- Charts -->
-            <div class="three-charts big">
-                <div class="card chart-big">Gráfico 1</div>
-                <div class="card chart-big">Gráfico 3</div>
-            </div>
-
-            <!-- Support + Plan -->
-            <div class="support-plan-row">
-                <div class="card">
-                    <h3>Soporte</h3>
-                    <p>¿Necesitas ayuda?</p>
-                    <button class="btn-outline">Contactar</button>
+            <div class="two-charts big">
+                <div class="card chart-big">
+                    <h3 class="chart-title">Instalaciones por Cliente</h3>
+                    <canvas id="instalacionesChart"></canvas>
                 </div>
-                <div class="plan-card">
-                    <div class="plan-header">
-                      <span class="plan-badge">{{ currentPlan.badge }}</span>
-                      <i [class]="currentPlan.icon" class="plan-icon"></i>
-                      <h4>{{ currentPlan.title }}</h4>
-                      <p class="plan-date">Válido hasta: {{ planEndDate }}</p>
-                    </div>
-                  
-                    <ul class="plan-features">
-                      <li *ngFor="let f of currentPlan.features" [class.active]="f.available">
-                        <i class="fas" [ngClass]="f.available ? 'fa-check-circle' : 'fa-times-circle'"></i>
-                        {{ f.name }}
-                      </li>
-                    </ul>
-                  
-                    <button class="btn-upgrade" (click)="goTo('planes')">
-                      Mejorar plan
-                    </button>
-                  </div>
-                  
+            
+                <div class="card chart-big">
+                    <h3 class="chart-title">Actualizaciones del Sistema</h3>
+                    <canvas id="versionesChart"></canvas>
+                </div>
             </div>
+            
+            <div class="support-plan-row">
 
+                <div class="card support-card">
+                    <div class="support-header">
+                        <i class="fas fa-headset support-icon"></i>
+                        <span class="support-badge">Disponible 24/7</span>
+                    </div>
+                    <div class="support-info">
+                        <h3>Soporte</h3>
+                        <p>¿Necesitas ayuda o tienes dudas?</p>
+                        <small>Estamos aquí para ayudarte cuando lo necesites.</small>
+                    </div>
+                    <button class="btn-support" (click)="goTo('soporte')">
+                        <i class="fas fa-comment-dots"></i> Contactar
+                    </button>
+                </div>
+                <div class="card plan-card">
+                    <div class="plan-header">
+                        <div class="plan-top-row">
+                            <i [class]="currentPlan.icon" class="plan-icon"></i>
+                            <span class="plan-badge">{{ currentPlan.badge }}</span>
+                        </div>
+
+                        <h4 class="plan-title">{{ currentPlan.title }}</h4>
+                        <p class="plan-date">Válido hasta: {{ planEndDate }}</p>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-info">
+                            <span class="plan-label">Costo mensual</span>
+                            <span class="plan-price">{{ currentPlan.price }}</span>
+                        </div>
+                    </div>
+                    <button class="btn-upgrade" (click)="goTo('planes')">
+                        Mejorar plan
+                    </button>
+                </div>
+                <div class="card tips-card">
+                    <div class="tips-header">
+                        <h3>Consejos financieros</h3>
+                        <i class="fa-solid fa-brain tips-header-icon"></i>
+                    </div>
+                    <div class="tips-carousel">
+                        <div class="tip-item" *ngFor="let t of tips; let i = index">
+                            <i [class]="t.icon + ' tip-icon'"></i>
+                            <p class="carr-tip">{{ t.text }}</p>
+                        </div>
+                    </div>
+                    <div class="carousel-dots">
+                        <span *ngFor="let t of tips; let i = index" [class.active]="i === activeTip"></span>
+                    </div>
+                    <button class="btn-outline-secondary" (click)="goTo('tips')">
+                        <i class="fa-solid fa-book"></i> Ver más tips
+                    </button>
+                </div>
+            </div>
         </div>
-
-        <!-- RIGHT -->
         <div class="col-right">
-
             <div class="card activity-card">
                 <div class="card-head">
                     <h3>Actividad reciente</h3>
                 </div>
-              
                 <ul class="activity-list">
-                    <li *ngFor="let t of recentTransactions" [class.debit]="t.type=='DEBIT'" [class.credit]="t.type=='CREDIT'">
+                    <li *ngFor="let t of recentTransactions" [class.debit]="t.type=='DEBIT'"
+                        [class.credit]="t.type=='CREDIT'">
                         <div class="activity-icon">
                             <i class="fas fa-arrow-down" *ngIf="t.type=='DEBIT'"></i>
                             <i class="fas fa-arrow-up" *ngIf="t.type=='CREDIT'"></i>
                         </div>
-                        
                         <div class="info">
                             <div class="title">{{ t.description }}</div>
                             <div class="subtitle">{{ t.date | date:'dd MMM, HH:mm' }}</div>
                         </div>
-              
                         <span class="amount">
                             {{ t.type=='DEBIT' ? '-' : '+' }} S/ {{ t.amount }}
                         </span>
                     </li>
                 </ul>
-              
                 <button class="btn-link" (click)="goTo('historial')">Ver todo</button>
-              </div>
-              
-
+            </div>
             <div class="card metas-card">
                 <h3 class="section-title">Tus metas</h3>
-
                 <ul class="metas-list">
                     <li *ngFor="let m of metas">
                         <div class="meta-header">
@@ -113,18 +126,15 @@
                             </div>
                             <div class="meta-percent">{{ m.progreso }}%</div>
                         </div>
-
                         <div class="progress-bar">
                             <div class="fill" [style.width.%]="m.progreso"></div>
                         </div>
-
                         <div class="meta-details">
                             S/ {{ m.current }} de {{ m.target }}
                         </div>
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
 </div>
