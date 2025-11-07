@@ -12,3 +12,238 @@ html {
   overflow-x: hidden;
   width: 100%;
 }
+
+
+body.dark-mode {
+  background: #1e1e1e !important;
+
+  .custom-sidebar {
+    background: #1e1e1e !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .ant-layout {
+    background: #1e1e1e !important;
+  }
+
+  .user-name {
+    color: #dddddd !important;
+  }
+
+  .user-username {
+    color: #adadad !important;
+  }
+
+  .sidebar-menu[_ngcontent-ng-c1044561173] li[_ngcontent-ng-c1044561173] i[_ngcontent-ng-c1044561173] {
+    color: #89d631;
+  }
+
+  .panel-root {
+    background: #1e1e1e !important;
+  }
+
+  .inner-content {
+    background: #1e1e1e !important;
+  }
+
+  .card.kpi {
+    background: #1e1e1e !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid rgba(137, 214, 49, 0.15);
+  }
+
+  .kpi-title {
+    color: #ffffff;
+  }
+
+  .kpi-value {
+    color: #dddddd !important;
+  }
+
+  .card {
+    background: #1e1e1e !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .custom-header {
+    background: #1e1e1e !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+    border-bottom: none !important;
+  }
+
+  .kpi-sub {
+
+    color: #dddddd !important;
+  }
+
+  .chart-title {
+    color: #dddddd !important;
+  }
+
+  .tips-header h3 {
+    color: #dddddd !important;
+  }
+
+  .plan-title {
+    color: #dddddd !important;
+  }
+
+  .card-head h3 {
+    color: #dddddd !important;
+  }
+
+  .title {
+    color: #dddddd !important;
+  }
+
+  .support-icon {
+    color: #dddddd !important;
+  }
+
+  .tips-header-icon {
+    color: #dddddd !important;
+  }
+
+  .support-info h3 {
+    color: #dddddd !important;
+  }
+
+  .section-title {
+    color: #dddddd !important;
+  }
+
+  .meta-name {
+    color: #dddddd !important;
+  }
+
+  .plan-info {
+    color: #dddddd !important;
+  }
+
+  .tip-item p {
+    color: #dddddd !important;
+  }
+
+  .activity-list {
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(137, 214, 49, 0.4) transparent;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(137, 214, 49, 0.4);
+      border-radius: 10px;
+      backdrop-filter: blur(4px);
+      transition: .3s;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(137, 214, 49, 0.7);
+    }
+  }
+
+  .metas-list {
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(137, 214, 49, 0.4) transparent;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(137, 214, 49, 0.4);
+      border-radius: 10px;
+      backdrop-filter: blur(4px);
+      transition: .3s;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(137, 214, 49, 0.7);
+    }
+  }
+
+  .progress-bar {
+    background: transparent;
+    border: 2px solid rgba(137, 214, 49, 0.15);
+  }
+
+  .meta-item {
+    background: #1e1e1e !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid rgba(137, 214, 49, 0.15);
+  }
+
+  .header-metas {
+    h2 {
+      color: #dddddd !important;
+    }
+  }
+
+  .meta-left h3 {
+    color: #dddddd !important;
+  }
+
+  .desc {
+    color: #dddddd !important;
+  }
+
+  .data-col .label {
+    font-weight: 600;
+    color: #dddddd !important;
+  }
+
+  .data-col .value {
+    color: #9c9c9c !important;
+  }
+
+  .header-metas {
+
+
+    h2 {
+      color: #89d631 !important;
+    }
+  }
+
+  .grid-metas {
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(137, 214, 49, 0.4) transparent;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(137, 214, 49, 0.4);
+      border-radius: 10px;
+      backdrop-filter: blur(4px);
+      transition: .3s;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(137, 214, 49, 0.7);
+    }
+  }
+
+  .progress-box {
+    background: transparent;
+    border: 2px solid rgba(137, 214, 49, 0.15);
+  }
+
+}

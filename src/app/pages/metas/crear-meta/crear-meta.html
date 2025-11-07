@@ -1,1 +1,49 @@
-<p>crear-meta works!</p>
+<!-- Modal Crear Meta mejorado -->
+<div class="modal-overlay">
+    <div class="modal-card animate">
+  
+      <h2><i class="fa-solid fa-bullseye"></i> Nueva Meta</h2>
+  
+      <form class="form">
+        <label>Título</label>
+        <input type="text" [(ngModel)]="meta.titulo" placeholder="Ej: Ahorrar para laptop" />
+  
+        <label>Monto objetivo</label>
+        <input type="number" [(ngModel)]="meta.monto" placeholder="Ej: 2500" />
+  
+        <label>Fecha objetivo</label>
+        <input type="date" [(ngModel)]="meta.fecha_objetivo" />
+  
+        <label>Prioridad</label>
+        <select [(ngModel)]="meta.prioridad">
+          <option [value]="1">Alta</option>
+          <option [value]="2">Media</option>
+          <option [value]="3">Baja</option>
+        </select>
+  
+        <label>Ícono</label>
+        <button type="button" class="icon-select" (click)="showIconPicker = true">
+          <i [class]="meta.icon"></i> Elegir ícono
+        </button>
+  
+        <div class="actions">
+          <button type="button" class="btn cancel" (click)="cerrarModal()">Cancelar</button>
+          <button type="button" class="btn primary" (click)="guardarMeta()">Guardar Meta</button>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Sub modal para seleccionar ícono -->
+    <div class="icon-modal" *ngIf="showIconPicker">
+      <div class="icon-grid animate">
+        <h3><i class="fa-solid fa-icons"></i> Seleccionar Ícono</h3>
+        <div class="grid">
+          <div *ngFor="let icon of iconList" (click)="elegirIcono(icon)" class="icon-box">
+            <i [class]="icon"></i>
+          </div>
+        </div>
+        <button class="btn cancel" (click)="showIconPicker = false">Cerrar</button>
+      </div>
+    </div>
+  </div>
+  
