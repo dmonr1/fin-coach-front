@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+
 * {
   margin: 0;
   padding: 0;
@@ -210,13 +211,12 @@ body.dark-mode {
 
   .header-metas {
 
-
     h2 {
       color: #89d631 !important;
     }
   }
 
-  .grid-metas {
+  .metas-container {
 
     scrollbar-width: thin;
     scrollbar-color: rgba(137, 214, 49, 0.4) transparent;
@@ -246,4 +246,144 @@ body.dark-mode {
     border: 2px solid rgba(137, 214, 49, 0.15);
   }
 
+  .modal-card {
+    background: #1e1e1e !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .form {
+    label {
+      color: #dddddd !important;
+    }
+
+    input,
+    select {
+      background-color: transparent !important;
+      color: #dddddd !important;
+      border: 1px solid #444 !important;
+    }
+  }
+
+  .modal-card h2 {
+    color: #dddddd !important;
+  }
+
+  .icon-grid {
+    background: #1e1e1e !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+
+    h3 {
+      color: #dddddd !important;
+    }
+
+    .icon-box {
+
+
+      &:hover {
+        background: rgba(#89d631, .16);
+        border: 1px solid #89d631;
+        color: #89d631;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .icon-grid .icon-box {
+    background: #1e1e1e !important;
+    border: 1px solid #89d631;
+    color: #ffffff;
+
+  }
+
+  .icon-grid {
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(137, 214, 49, 0.4) transparent;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(137, 214, 49, 0.4);
+      border-radius: 10px;
+      backdrop-filter: blur(4px);
+      transition: .3s;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(137, 214, 49, 0.7);
+    }
+  }
+
+  .icon-grid button {
+    background-color: #89d631 !important;
+    color: #ffffff !important;
+
+  }
+
+  .form .actions .cancel {
+    background: transparent !important;
+    color: #ffffff !important;
+    border: 1px solid #89d631 !important;
+  }
+
+  .actions {
+    color: #ffffff !important;
+  }
+
+  .meta-percent {
+    color: #ffffff !important;
+  }
+
+  .support-info p {
+    color: #ffffff !important;
+  }
+
+  .plan-date {
+    color: #ffffff !important;
+  }
+
+  .modal-detalle {
+    background: #1e1e1e !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .detalle-header .left .titulo-input {
+    background: transparent !important;
+    color: #ffffff !important;
+  }
+
+  .detalle-body .col label {
+    color: #dddddd !important;
+  }
+
+  .detalle-body[_ngcontent-ng-c2625954915] .col[_ngcontent-ng-c2625954915] input[_ngcontent-ng-c2625954915],
+  .detalle-body[_ngcontent-ng-c2625954915] .col[_ngcontent-ng-c2625954915] select[_ngcontent-ng-c2625954915] {
+    background: transparent !important;
+    color: #ffffff !important;
+    border: 1px solid #d3d631 !important;
+  }
+
+  option {
+    background-color: rgba(32, 32, 32, 0.9725490196) !important;
+    color: #ebebebf9 !important;
+  }
+
+
+  .icon-color {
+    color: #dddddd !important;
+  }
+
+  .detalle-body .icon-btn {
+    color: #dddddd !important;
+  }
+
+  .cerrar {
+    color: #dddddd !important;
+  }
 }

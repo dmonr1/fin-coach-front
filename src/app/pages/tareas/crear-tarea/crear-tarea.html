@@ -1,1 +1,35 @@
-<p>crear-tarea works!</p>
+<div class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>{{ tarea?.id ? 'Editar tarea' : 'Nueva tarea' }}</h3>
+        <button class="close" (click)="cerrarAlias()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+  
+      <form class="form">
+        <label>Título</label>
+        <input type="text" [(ngModel)]="local.titulo" name="titulo" />
+  
+        <label>Descripción</label>
+        <textarea rows="3" [(ngModel)]="local.descripcion" name="descripcion"></textarea>
+  
+        <label>Fecha límite</label>
+        <input type="date" [(ngModel)]="local.fecha_limite" name="fecha_limite" />
+  
+        <label>Prioridad</label>
+        <select [(ngModel)]="local.prioridad" name="prioridad">
+          <option [value]="1">Alta</option>
+          <option [value]="2">Media</option>
+          <option [value]="3">Baja</option>
+        </select>
+  
+        <label>Vincular a meta (opcional)</label>
+        <input type="number" [(ngModel)]="local.vinculada_meta" name="vinculada_meta" min="1" />
+  
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" (click)="cerrarAlias()">Cancelar</button>
+          <button type="button" class="btn-primary" (click)="guardar()">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

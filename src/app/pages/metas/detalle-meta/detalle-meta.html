@@ -1,1 +1,77 @@
-<p>detalle-meta works!</p>
+<div class="modal-overlay">
+    <div class="modal-detalle animate">
+
+        <div class="detalle-header">
+            <div class="left">
+                <i class="{{ meta.icon }} icon-main"></i>
+                <input type="text" [(ngModel)]="meta.titulo" class="titulo-input" />
+            </div>
+
+            <button class="close-btn" (click)="cerrar()">
+                <i class="fa-solid fa-xmark cerrar"></i>
+            </button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="detalle-body">
+
+            <div class="col">
+
+                <label>Descripción</label>
+                <input type="text" [(ngModel)]="meta.descripcion" />
+
+                <label>Fecha objetivo</label>
+                <input type="date" [(ngModel)]="meta.fecha_objetivo" />
+
+                <label>Prioridad</label>
+                <select [(ngModel)]="meta.prioridad">
+                    <option [value]="1">Alta</option>
+                    <option [value]="2">Media</option>
+                    <option [value]="3">Baja</option>
+                </select>
+            </div>
+
+            <div class="col">
+
+                <label>Estado</label>
+                <select [(ngModel)]="meta.estado">
+                    <option value="activa">Activa</option>
+                    <option value="proceso">En Proceso</option>
+                    <option value="cumplida">Completada</option>
+                    <option value="cancelada">Cancelada</option>
+                </select>
+
+                <label>Ícono</label>
+                <button class="icon-btn" (click)="showIconPicker = true">
+                    <i class="{{ meta.icon }} icon-color"></i> Cambiar ícono
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="divider bottom"></div>
+
+        <div class="footer-actions">
+            <button class="btn delete" (click)="eliminarMeta()">Eliminar</button>
+            <button class="btn save" (click)="guardar()">Guardar Cambios</button>
+        </div>
+
+    </div>
+
+    <div class="icon-modal" *ngIf="showIconPicker">
+        <div class="icon-grid">
+            <h3><i class="fa-solid fa-icons"></i> Seleccionar Ícono</h3>
+
+            <div class="grid">
+                <div *ngFor="let icon of iconList" (click)="elegirIcono(icon)" class="icon-box">
+                    <i [class]="icon"></i>
+                </div>
+            </div>
+
+            <button (click)="showIconPicker = false">Cerrar</button>
+        </div>
+    </div>
+
+</div>

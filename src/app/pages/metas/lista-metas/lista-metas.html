@@ -1,39 +1,43 @@
 <div class="header-metas">
-    <h2 a>Listado de Metas</h2>
-    <button class="btn-crear" (click)="abrirModal()">+ Crear Meta</button>
-  </div>
-  
+  <h2 a>Listado de Metas</h2>
+  <button class="btn-crear" (click)="abrirModal()">+ Crear Meta</button>
+</div>
+
+<div class="metas-container">
   <div class="grid-metas">
     <div class="meta-item" *ngFor="let m of metas">
-  
+
       <div class="meta-top">
         <div class="meta-left">
           <i class="meta-icon {{ m.icon }}"></i>
           <h3>{{ m.titulo }}</h3>
         </div>
-  
+
         <span class="badge" [ngClass]="m.estado">{{ formatEstado(m.estado) }}</span>
       </div>
-  
+
       <p class="desc">{{ m.descripcion }}</p>
-  
+
       <div class="progress-box">
         <div class="progress" [style.width.%]="m.progreso"></div>
       </div>
-  
+
       <div class="meta-footer">
         <div class="data-col">
           <span class="label">Fecha Objetivo</span>
           <span class="value">{{ m.fecha_objetivo | date:'dd/MM/yyyy' }}</span>
-  
+
           <span class="label">Prioridad</span>
           <span class="value">{{ m.prioridad }}</span>
         </div>
-  
-        <button class="btn-detail" (click)="goToDetalle(m)">Ver Detalle</button>
+
+        <button class="btn-detail" (click)="abrirDetalle(m)">Ver Detalle</button>
       </div>
-  
+
     </div>
   </div>
-  
-  <app-crear-meta *ngIf="mostrarModal" (cerrar)="cerrarModal()" (guardado)="onMetaGuardada()"></app-crear-meta>
+</div>
+
+<app-crear-meta *ngIf="mostrarModal" (cerrar)="cerrarModal()" (guardado)="onMetaGuardada()"></app-crear-meta>
+<app-detalle-meta *ngIf="mostrarDetalle" [meta]="metaSeleccionada" (cerrarModal)="cerrarDetalle()"
+  (actualizar)="actualizarMeta($event)" (eliminar)="eliminarMeta($event)"></app-detalle-meta>

@@ -1,192 +1,239 @@
 $verde: #89d631;
-
 @use "sass:color";
 
 .modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, .55);
-  backdrop-filter: blur(4px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .55);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
 .modal-card {
-  background: rgba(255, 255, 255, 0.90);
-  backdrop-filter: blur(10px);
-  width: 420px;
-  border-radius: 16px;
-  padding: 25px;
-  animation: fadeIn .25s ease-out;
-  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+    background: #fff;
+    width: 480px;
+    border-radius: 18px;
+    padding: 26px;
+    animation: fadeIn .25s ease-out;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .18);
 
-  h2 {
-    font-size: 22px;
-    margin-bottom: 18px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    h2 {
+        font-size: 22px;
+        margin-bottom: 18px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
 
-    i {
-      color: $verde;
+        i {
+            color: $verde;
+        }
     }
-  }
 
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    h2 {
+        position: relative;
+        padding-bottom: 8px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            height: 3px;
+            width: 0;
+            background: $verde;
+            border-radius: 4px;
+            animation: lineGrow .5s ease forwards;
+        }
+    }
+
+}
+
+@keyframes lineGrow {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 16px;
 
     label {
-      font-weight: 600;
-      font-size: 14px;
-      color: #333;
+        font-weight: 600;
+        font-size: 14px;
+        color: #333;
     }
 
-    input, select {
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      outline: none;
-      transition: border-color .2s;
+    .monto {
+        justify-content: center;
+        align-items: center;
+    }
 
-      &:focus {
-        border-color: $verde;
-      }
+    .full {
+        grid-column: span 2;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        transition: .2s;
+
+        &:focus {
+            border-color: $verde;
+        }
     }
 
     .icon-select {
-      padding: 10px;
-      border-radius: 8px;
-      background: rgba($verde, .12);
-      color: $verde;
-      font-size: 14px;
-      border: 1px solid $verde;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: .2s;
+        grid-column: 2 / 3;
+        padding: 9px 12px;
+        border: 1px solid $verde;
+        border-radius: 8px;
+        background: rgba($verde, .12);
+        color: $verde;
+        cursor: pointer;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        justify-content: center;
 
-      &:hover {
-        background: $verde;
-        color: #fff;
-      }
+        &:hover {
+            background: $verde;
+            color: white;
+        }
     }
 
     .actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 10px;
+        grid-column: span 2;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 6px;
 
-      .btn {
-        padding: 10px 16px;
-        border-radius: 10px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: .2s;
-      }
-
-      .cancel {
-        background: #ddd;
-        border: none;
-        &:hover { background: #ccc; }
-      }
-
-      .primary {
-        background: $verde;
-        color: #fff;
-        border: none;
-        &:hover { background: color.adjust($verde, $lightness: -8%);
+        .btn {
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
         }
-      }
+
+        .cancel {
+            background: #ddd;
+
+            &:hover {
+                background: #ccc;
+            }
+        }
+
+        .primary {
+            background: $verde;
+            color: white;
+
+            &:hover {
+                background: color.adjust($verde, $lightness: -8%);
+            }
+        }
     }
-  }
 }
 
-/* Sub modal icon picker */
 .icon-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.55);
-  backdrop-filter: blur(4px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
 }
 
 .icon-grid {
-  background: rgba(255,255,255,.95);
-  width: 420px;
-  border-radius: 16px;
-  padding: 20px;
-  text-align: center;
-  animation: fadeIn .22s ease;
+    background: #fff;
+    width: 420px;
+    border-radius: 14px;
+    padding: 20px;
+    animation: fadeIn .22s ease;
 
-  h3 {
-    font-size: 18px;
-    margin-bottom: 14px;
-    font-weight: 700;
-    display: flex;
-    gap: 8px;
-    justify-content: center;
+    h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-weight: 700;
+        display: flex;
+        gap: 8px;
+        justify-content: center;
 
-    i { color: $verde; }
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
-    gap: 12px;
-    max-height: 250px;
-    overflow-y: auto;
-    padding-bottom: 12px;
-  }
-
-  .icon-box {
-    background: #f5f5f5;
-    border-radius: 10px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 22px;
-    transition: .2s;
-    border: 1px solid transparent;
-
-    &:hover {
-      background: rgba($verde,.16);
-      border-color: $verde;
-      color: $verde;
-      transform: translateY(-2px);
+        i {
+            color: $verde;
+        }
     }
-  }
 
-  .cancel {
-    margin-top: 14px;
-    padding: 8px 14px;
-    background: #ddd;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-
-    &:hover {
-      background: #ccc;
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 12px;
+        max-height: 270px;
+        overflow-y: auto;
     }
-  }
+
+    .icon-box {
+        background: #f5f5f5;
+        border-radius: 10px;
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 22px;
+        transition: .2s;
+        margin-top: 10px;
+
+        &:hover {
+            background: rgba($verde, .16);
+            border: 1px solid $verde;
+            color: $verde;
+            transform: translateY(-2px);
+        }
+    }
+
+    button {
+        margin-top: 25px;
+        width: 100%;
+        padding: 10px;
+        background: #ddd;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+
+
+        &:hover {
+            background: #ccc;
+        }
+    }
 }
 
-/* Animación */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

@@ -1,0 +1,239 @@
+$verde: #89d631;
+@use "sass:color";
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .55);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-detalle {
+    width: 750px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .18);
+    animation: fadeIn .25s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.detalle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .icon-main {
+            font-size: 32px;
+            color: $verde;
+        }
+
+        .titulo-input {
+            font-size: 24px;
+            font-weight: 700;
+            border: none;
+            outline: none;
+            width: 300px;
+        }
+    }
+
+    .close-btn {
+        background: transparent;
+        font-size: 22px;
+        cursor: pointer;
+        border: none;
+    }
+}
+
+.divider {
+    height: 2px;
+    background: $verde;
+    margin: 15px 0;
+    animation: growLine .4s ease forwards;
+}
+
+.detalle-body {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+
+    .col {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        label {
+            font-weight: 600;
+        }
+
+        input,
+        select {
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 8px;
+            transition: .2s;
+
+            &:focus {
+                border-color: $verde;
+            }
+        }
+    }
+
+    .icon-btn {
+        border: 1px solid $verde;
+        background: rgba($verde, .1);
+        padding: 8px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            background: $verde;
+            color: #fff;
+        }
+    }
+}
+
+.footer-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 5px;
+
+    .btn {
+        padding: 10px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        border: none;
+    }
+
+    .delete {
+        background: #e74c3c;
+        color: #fff;
+
+        &:hover {
+            background: #c0392b;
+        }
+    }
+
+    .save {
+        background: #83cf2b;
+        color: #fff;
+
+        &:hover {
+            background: #70af28;
+        }
+    }
+}
+
+.icon-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
+}
+
+.icon-grid {
+    background: #fff;
+    width: 420px;
+    border-radius: 14px;
+    padding: 20px;
+    animation: fadeIn .22s ease;
+
+    h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-weight: 700;
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+
+        i {
+            color: $verde;
+        }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 12px;
+        max-height: 270px;
+        overflow-y: auto;
+    }
+
+    .icon-box {
+        background: #f5f5f5;
+        border-radius: 10px;
+        height: 58px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 22px;
+        transition: .2s;
+        margin-top: 10px;
+
+        &:hover {
+            background: rgba($verde, .16);
+            border: 1px solid $verde;
+            color: $verde;
+            transform: translateY(-2px);
+        }
+    }
+
+    button {
+        margin-top: 25px;
+        width: 100%;
+        padding: 10px;
+        background: #ddd;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+
+
+        &:hover {
+            background: #ccc;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes growLine {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}

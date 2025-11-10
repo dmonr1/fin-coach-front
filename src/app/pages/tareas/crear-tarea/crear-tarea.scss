@@ -1,0 +1,55 @@
+$verde: #89d631;
+$muted: #64748b;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+
+.modal-card {
+  width: 520px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(17,24,39,0.12);
+  font-family: Inter, sans-serif;
+}
+
+.modal-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom: 8px;
+
+  h3 { margin:0; font-size:18px; font-weight:700; color:#122; }
+  .close { background:transparent; border:none; cursor:pointer; font-size:16px; }
+}
+
+.form {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+
+  label { font-weight:600; color:#333; font-size:13px; }
+
+  input, textarea, select {
+    padding:10px 12px; border-radius:8px; border:1px solid #e6e6e6; font-size:14px;
+    &:focus { border-color: $verde; outline: none; box-shadow: 0 6px 18px rgba(137,214,49,0.08); }
+  }
+
+  textarea { resize: vertical; min-height:72px; }
+
+  .form-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:6px; }
+
+  .btn-primary {
+    background: $verde; color:#fff; border:none; padding:8px 14px; border-radius:9px; font-weight:700;
+  }
+  .btn-secondary {
+    background: transparent; border:1px solid #ddd; padding:8px 14px; border-radius:9px; color:#333;
+  }
+}

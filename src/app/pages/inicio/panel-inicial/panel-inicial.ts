@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Plan } from '../../../interfaces/planes';
 import { Chart, registerables } from 'chart.js';
+import { CrearMeta } from '../../metas/crear-meta/crear-meta';
 
 Chart.register(...registerables);
 
@@ -36,7 +37,7 @@ type Trans = {
 @Component({
   selector: 'app-panel-inicial',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CrearMeta],
   templateUrl: './panel-inicial.html',
   styleUrl: './panel-inicial.scss',
 })
@@ -162,4 +163,15 @@ export class PanelInicial {
       }
     });
   }
+
+  mostrarModal = false;
+
+  abrirModal() {
+    this.mostrarModal = true;
+  }
+  
+  cerrarModal() {
+    this.mostrarModal = false;
+  }
+  
 }

@@ -36,7 +36,7 @@
     flex-direction: column;
     min-height: 0;
     width: 100%;
-    padding:  10px;
+    padding: 10px;
 }
 
 .title-pa {
@@ -274,7 +274,7 @@
 }
 
 .card-head h3 {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 10px;
@@ -699,4 +699,28 @@ canvas {
 .chart-big canvas {
     flex: 1;
     min-height: 0;
+}
+
+.actions {
+    cursor: pointer;
+    font-size: 16px;
+
+    .add,
+    .irMeta {
+        transition: all .25s ease;
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 14px;
+        border-radius: 8px;
+    }
+
+    .add:hover,
+    .irMeta:hover {
+        transform: translateY(-3px);
+        background: rgba(0, 0, 0, .03);
+    }
+
+    .add {
+        margin-right: 10px;
+    }
 }

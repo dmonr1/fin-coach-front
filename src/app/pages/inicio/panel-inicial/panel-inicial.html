@@ -30,13 +30,13 @@
                     <h3 class="chart-title">Instalaciones por Cliente</h3>
                     <canvas id="instalacionesChart"></canvas>
                 </div>
-            
+
                 <div class="card chart-big">
                     <h3 class="chart-title">Actualizaciones del Sistema</h3>
                     <canvas id="versionesChart"></canvas>
                 </div>
             </div>
-            
+
             <div class="support-plan-row">
 
                 <div class="card support-card">
@@ -117,7 +117,14 @@
                 <button class="btn-link" (click)="goTo('historial')">Ver todo</button>
             </div>
             <div class="card metas-card">
-                <h3 class="section-title">Tus metas</h3>
+                <div class="tips-header">
+                    <h3 class="section-title">Tus metas</h3>
+                    <div class="actions" >
+                        <i class="fa-solid fa-plus add" (click)="abrirModal()"></i>
+                        <i class="fa-solid fa-arrow-right irMeta" (click)="goTo('metas')"></i>
+                    </div>
+
+                </div>
                 <ul class="metas-list">
                     <li *ngFor="let m of metas">
                         <div class="meta-header">
@@ -138,3 +145,5 @@
         </div>
     </div>
 </div>
+
+<app-crear-meta *ngIf="mostrarModal" (cerrar)="cerrarModal()"></app-crear-meta>
