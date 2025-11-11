@@ -34,7 +34,16 @@ export class ListaTareas {
     { id: 4, titulo: 'Actualizar presupuesto mensual', descripcion: 'Incluir nuevos gastos fijos', fecha_limite: this.isoDateOffset(5), estado: 'completada', prioridad: 3, expanded: false, creado_en: new Date() },
     { id: 5, titulo: 'Configurar alertas de gastos', descripcion: 'Establecer notificaciones para gastos altos', fecha_limite: this.isoDateOffset(10), estado: 'pendiente', prioridad: 2, expanded: false, creado_en: new Date() },
     { id: 6, titulo: 'Revisar suscripciones', descripcion: 'Cancelar las que no uso', fecha_limite: this.isoDateOffset(2), estado: 'cancelada', prioridad: 3, expanded: false, creado_en: new Date() },
+    { id: 7, titulo: 'Planificar inversión mensual', descripcion: 'Decidir monto a invertir este mes', fecha_limite: this.isoDateOffset(15), estado: 'pendiente', prioridad: 2, expanded: false, creado_en: new Date() },
+    { id: 8, titulo: 'Crear informe financiero', descripcion: 'Resumen de ingresos y gastos del mes', fecha_limite: this.isoDateOffset(20), estado: 'en_proceso', prioridad: 1, expanded: false, creado_en: new Date() },
+    { id: 9, titulo: 'Optimizar gastos en ocio', descripcion: 'Buscar alternativas más económicas', fecha_limite: this.isoDateOffset(12), estado: 'pendiente', prioridad: 2, expanded: false, creado_en: new Date() },
   ];
+
+  filtroTexto = '';
+filtroPrioridad = '';
+filtroEstado = '';
+
+
 
   mostrarModal = false;
   tareaEnEdicion: Tarea | null = null;
@@ -57,6 +66,14 @@ export class ListaTareas {
     this.tareaEnEdicion = null;
   }
 
+  tareasFiltradas() {
+    return this.tareas.filter(t =>
+      (this.filtroTexto ? t.titulo.toLowerCase().includes(this.filtroTexto.toLowerCase()) : true) &&
+      (this.filtroPrioridad ? t.prioridad == Number(this.filtroPrioridad) : true) &&
+      (this.filtroEstado ? t.estado == this.filtroEstado : true)
+    );
+  }
+
   onTareaGuardada(tarea: Tarea) {
     if (tarea.id) {
       const idx = this.tareas.findIndex(x => x.id === tarea.id);
@@ -74,16 +91,23 @@ export class ListaTareas {
     t.estado = (t.estado === 'completada') ? 'pendiente' : 'completada';
   }
 
+  
+
   eliminar(t: Tarea) {
     if (!confirm('¿Eliminar tarea?')) return;
     this.tareas = this.tareas.filter(x => x !== t);
   }
 
-  // ✅ despliega tarjeta
   toggleExpand(t: Tarea) {
+    // cerrar todos
+    this.tareas.forEach(x => {
+      if (x !== t) x.expanded = false;
+    });
+  
+    // alternar solo el clickeado
     t.expanded = !t.expanded;
   }
-
+  
   // ✅ colores prioridad
   getPrioridadColor(p?: number) {
     return p === 1 ? 'prio-1' : p === 3 ? 'prio-3' : 'prio-2';

@@ -1,71 +1,111 @@
-<div class="tasks-root">
-    <div class="tasks-header">
-      <div class="title-wrap">
-        <h2>Mis Tareas</h2>
-        <p class="subtitle">Acciones rápidas y seguimiento</p>
+<div class="header-metas">
+    <h2 a>Listado de Metas</h2>
+  </div>
+<div class="tasks-header">
+    <input type="text" placeholder="Buscar tareas..." [(ngModel)]="filtroTexto">
+    <div class="filters">
+      <select [(ngModel)]="filtroPrioridad">
+        <option value="">Prioridad</option>
+        <option value="1">Alta</option>
+        <option value="2">Media</option>
+        <option value="3">Baja</option>
+      </select>
+      <select [(ngModel)]="filtroEstado">
+        <option value="">Estado</option>
+        <option value="pendiente">Pendiente</option>
+        <option value="en_proceso">En Proceso</option>
+        <option value="completada">Completada</option>
+      </select>
+    </div>
+    <button class="add-task" (click)="abrirCrear()">Nueva Tarea</button>
+  </div>
+  
+  <div class="tasks-list">
+    <div 
+      class="task-card" 
+      *ngFor="let t of tareasFiltradas()"
+      [ngClass]="getPrioridadColor(t.prioridad)"
+      [class.completada]="t.estado === 'completada'"
+    >
+      <div class="left-icon">
+        <span *ngIf="t.estado !== 'completada'" (click)="toggleEstado(t)"><i class="fa-solid fa-circle-notch red"></i></span>
+        <span *ngIf="t.estado === 'completada'" (click)="toggleEstado(t)"><i class="fa-solid fa-square-check green"></i></span>
+      </div>
+  
+      <div class="task-content" (click)="toggleExpand(t)">
+        <div class="title-row">
+          <h3>{{ t.titulo }}</h3>
+          <div class="chips">
+            <span class="chip prioridad-{{t.prioridad}}">
+              <i class="fa-solid fa-flag"></i>
+              {{ t.prioridad === 1 ? 'Alta' : t.prioridad === 2 ? 'Media' : 'Baja' }}
+            </span>
+          
+            <span class="chip estado-{{t.estado}}">
+              <i class="fa-solid"
+                 [ngClass]="{
+                    'fa-circle-check': t.estado === 'completada',
+                    'fa-hourglass-half': t.estado === 'en_proceso',
+                    'fa-circle': t.estado === 'pendiente',
+                    'fa-ban': t.estado === 'cancelada'
+                 }">
+              </i>
+              {{ t.estado }}
+            </span>
+          </div>
+          
+        </div>
+  
+        <p class="desc">{{ t.descripcion }}</p>
+  
+        <div class="meta-info">
+          Fecha límite: {{ t.fecha_limite }} 
+        </div>
+  
+        <div class="progress-bar">
+          <div class="progress" style="width: 60%"></div>
+        </div>
       </div>
   
       <div class="actions">
-        <button class="btn-primary" (click)="abrirCrear()">+ Nueva tarea</button>
+        <span class="icon" (click)="toggleEstado(t)"><i class="fa-solid fa-check green"></i></span>
+        <span class="icon" (click)="abrirEditar(t)"><i class="fa-solid fa-pen yellow"></i></span>
+        <span class="icon"><i class="fa-solid fa-link gray"></i></span>
+        <span class="icon" (click)="eliminar(t)"><i class="fa-solid fa-trash red"></i></span>
       </div>
-    </div>
   
-    <div class="tasks-grid">
-      <div *ngFor="let t of tareas"
-           class="task-card"
-           [class.completed]="t.estado === 'completada'"
-           [class.expanded]="t.expanded"
-           (click)="toggleExpand(t)">
-  
-        <div class="task-left">
-          <label class="check" (click)="$event.stopPropagation()">
-            <input type="checkbox" 
-                   [checked]="t.estado==='completada'" 
-                   (change)="toggleEstado(t)" />
-            <span></span>
-          </label>
-  
-          <div class="task-info">
-            <div class="task-title-row">
-              <h4 class="task-title" [title]="t.titulo">{{ t.titulo }}</h4>
-              <span class="tag" [ngClass]="getPrioridadColor(t.prioridad)">
-                {{ getTextoPrioridad(t.prioridad) }}
-              </span>
-            </div>
-  
-            <div class="task-desc">{{ t.descripcion }}</div>
-  
-            <div class="task-meta">
-              <span *ngIf="t.fecha_limite" class="meta-item">
-                ⏰ {{ t.fecha_limite | date:'dd/MM/yyyy' }}
-              </span>
-              <span *ngIf="t.vinculada_meta" class="meta-item">
-                🎯 Meta #{{ t.vinculada_meta }}
-              </span>
-            </div>
+      <div class="expand" *ngIf="t.expanded">
+        <div class="extra">
+      
+          <p class="extra-title">Notas, subtareas y adjuntos</p>
+      
+          <div class="extra-actions">
+      
+            <button class="sub-action">
+              <i class="fa-solid fa-list-check"></i>
+              Subtarea
+            </button>
+      
+            <button class="sub-action">
+              <i class="fa-solid fa-note-sticky"></i>
+              Nota
+            </button>
+      
+            <button class="sub-action">
+              <i class="fa-solid fa-paperclip"></i>
+              Archivo
+            </button>
+      
           </div>
+      
         </div>
-  
-        <div class="task-actions" (click)="$event.stopPropagation()">
-          <button class="icon-btn" (click)="abrirEditar(t)"><i class="fa-solid fa-pen"></i></button>
-          <button class="icon-btn delete" (click)="eliminar(t)"><i class="fa-solid fa-trash"></i></button>
-        </div>
-  
-        <!-- EXTRA INFO EXPANDIBLE -->
-        <div class="extra-info" *ngIf="t.expanded">
-          <p><strong>Estado:</strong> {{ t.estado }}</p>
-          <p *ngIf="t.vinculada_meta"><strong>Meta vinculada:</strong> {{ t.vinculada_meta }}</p>
-          <p *ngIf="t.creado_en"><strong>Creado:</strong> {{ t.creado_en | date:'dd/MM/yyyy' }}</p>
-        </div>
-  
       </div>
-    </div>
+      
   
-    <app-crear-tarea
-      *ngIf="mostrarModal"
-      [tarea]="tareaEnEdicion"
-      (cerrar)="cerrarModal()"
-      (guardado)="onTareaGuardada($event)">
-    </app-crear-tarea>
+    </div>
   </div>
   
+
+    <app-crear-tarea *ngIf="mostrarModal" [tarea]="tareaEnEdicion" (cerrar)="cerrarModal()"
+        (guardado)="onTareaGuardada($event)">
+    </app-crear-tarea>
