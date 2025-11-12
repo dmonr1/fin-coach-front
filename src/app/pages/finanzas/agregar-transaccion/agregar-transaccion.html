@@ -1,1 +1,23 @@
-<p>agregar-transaccion works!</p>
+<div class="modal-overlay">
+    <div class="modal">
+      <h3>Nueva Transacción</h3>
+  
+      <label>Descripción</label>
+      <input [(ngModel)]="descripcion">
+  
+      <label>Monto</label>
+      <input type="number" [(ngModel)]="monto">
+  
+      <label>Tipo</label>
+      <select [(ngModel)]="tipo">
+        <option value="ingreso">Ingreso ✅</option>
+        <option value="gasto">Gasto ❌</option>
+      </select>
+  
+      <div class="actions">
+        <button class="cancel" (click)="cerrar.emit()">Cancelar</button>
+        <button class="save" (click)="guardarTransaccion()">Guardar</button>
+      </div>
+    </div>
+  </div>
+  

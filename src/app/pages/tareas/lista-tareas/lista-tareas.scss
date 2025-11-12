@@ -3,9 +3,8 @@
 :host {
     font-family: 'Inter', sans-serif;
     color: #1a1a1a;
-    background: #f9fafb;
     display: block;
-    padding: 15px;
+    padding: 10px 15px 15px 15px;
 }
 
 .tasks-header {
@@ -13,6 +12,7 @@
     gap: 10px;
     margin-bottom: 18px;
     align-items: center;
+    padding-left: 15px;
 
     input {
         flex: 1;
@@ -66,12 +66,12 @@
     justify-content: space-between;
     margin-bottom: 10px;
     align-items: center;
+    padding-left: 15px;
 
     h2 {
         font-size: 26px;
         font-weight: 700;
         color: #89d631;
-        margin-top: 10px;
         margin-bottom: 0px;
     }
 }
@@ -84,11 +84,9 @@
 .tasks-list {
     max-height: calc(100vh - 220px);
     overflow-y: auto;
-    padding-right: 4px;
     gap: 18px;
     display: grid;
-    padding-bottom: 20px;
-    ;
+    padding: 15px;
 }
 
 .task-card {
@@ -305,18 +303,6 @@
     }
 }
 
-.prio-1 {
-    border-bottom: 3px solid #ff5c5c;
-
-}
-
-.prio-2 {
-    border-bottom: 4px solid #f7b431;
-}
-
-.prio-3 {
-    border-bottom: 4px solid #4a90e2;
-}
 
 .red {
     color: #ff5c5c;

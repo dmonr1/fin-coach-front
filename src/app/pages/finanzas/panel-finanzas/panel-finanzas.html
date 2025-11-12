@@ -1,1 +1,108 @@
-<p>panel-finanzas works!</p>
+<div class="panel-root">
+  
+    <div class="panel-header">
+        <div class="title-pa">Panel de Finanzas</div>
+        <div class="subtitle-pa">Controla tus ingresos, gastos y balance</div>
+      </div>
+      
+      <!-- KPI CARD ROW -->
+      <div class="cards-row">
+      
+        <!-- Ingresos -->
+        <div class="card kpi">
+          <div class="kpi-left">
+            <div class="kpi-title">Ingresos del mes</div>
+            <div class="kpi-value">S/ {{ totalIngresos }}</div>
+          </div>
+          <div class="kpi-icon kpi-income">
+            <i class="fa-solid fa-arrow-up"></i>
+          </div>
+        </div>
+      
+        <!-- Gastos -->
+        <div class="card kpi">
+          <div class="kpi-left">
+            <div class="kpi-title">Gastos del mes</div>
+            <div class="kpi-value">S/ {{ totalGastos }}</div>
+          </div>
+          <div class="kpi-icon kpi-expense">
+            <i class="fa-solid fa-arrow-down"></i>
+          </div>
+        </div>
+      
+        <!-- Balance -->
+        <div class="card kpi">
+          <div class="kpi-left">
+            <div class="kpi-title">Balance total</div>
+            <div class="kpi-value">S/ {{ balance }}</div>
+          </div>
+          <div class="kpi-icon kpi-info">
+            <i class="fa-solid fa-scale-balanced"></i>
+          </div>
+        </div>
+      
+        <!-- Botón -->
+        <button class="card kpi btn-add" (click)="abrirModal()">
+          <i class="fa-solid fa-plus"></i>
+          Nueva Transacción
+        </button>
+      </div>
+      
+  
+    <!-- GRID -->
+    <div class="grid">
+      
+      <!-- CHARTS -->
+      <div class="charts-column">
+        <div class="chart-card">
+          <h4>Gastos del Mes</h4>
+          <div class="chart-wrapper">
+            <canvas id="chartGastos"></canvas>
+          </div>
+        </div>
+      
+        <div class="chart-card">
+          <h4>Ingresos vs Gastos</h4>
+          <div class="chart-wrapper">
+            <canvas id="chartBalance"></canvas>
+          </div>
+        </div>
+      </div>
+      
+  
+      <!-- TRANSACCIONES -->
+      <div class="activity-card card">
+        <div class="card-head">
+          <h3>Últimas Transacciones</h3>
+        </div>
+  
+        <ul class="activity-list">
+          <li *ngFor="let t of transacciones" [class.credit]="t.tipo==='ingreso'" [class.debit]="t.tipo==='gasto'">
+            
+            <div class="activity-icon">
+              <i class="fa-solid" [ngClass]="t.tipo === 'ingreso' ? 'fa-arrow-up' : 'fa-arrow-down'"></i>
+            </div>
+  
+            <div>
+              <div class="title">{{ t.descripcion }}</div>
+              <div class="subtitle">{{ t.fecha }}</div>
+            </div>
+  
+            <div class="amount">
+              {{ t.tipo === 'ingreso' ? '+' : '-' }} S/ {{ t.monto }}
+            </div>
+  
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- MODAL -->
+    <app-agregar-transaccion 
+      *ngIf="modalAbierto" 
+      (cerrar)="cerrarModal()" 
+      (guardar)="guardarTransaccion($event)">
+    </app-agregar-transaccion>
+  
+  </div>
+  

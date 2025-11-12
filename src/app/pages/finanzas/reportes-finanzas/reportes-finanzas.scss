@@ -1,0 +1,11 @@
+.charts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+
+    canvas {
+        flex: 1;
+        max-height: 230px;
+    }
+}

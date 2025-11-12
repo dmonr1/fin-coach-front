@@ -386,4 +386,82 @@ body.dark-mode {
   .cerrar {
     color: #dddddd !important;
   }
+
+  .task-card {
+    background: #1e1e1e !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+    border: none !important;
+  }
+
+  .task-content .title-row h3 {
+    color: #dddddd !important;
+  }
+
+  .meta-info {
+    color: #dddddd !important;
+  }
+
+  .tasks-list {
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(137, 214, 49, 0.4) transparent;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(137, 214, 49, 0.4);
+      border-radius: 10px;
+      backdrop-filter: blur(4px);
+      transition: .3s;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(137, 214, 49, 0.7);
+    }
+  }
+
+  .tasks-header input {
+    background: transparent !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+    border: none !important;
+  }
+
+  select {
+    background: transparent !important;
+    border: none !important;
+    color: #dddddd !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .modal-header h3 {
+    color: #dddddd !important;
+  }
+
+  .form textarea {
+    background: transparent !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6) !important;
+    color: #dddddd !important;
+    border: #505050 1px solid !important;
+  }
+
+  .form .btn-secondary {
+    color: #dddddd !important;
+  }
+
+  .expand {
+    background: #1f1f1f !important;
+    border: #505050 1px solid !important;
+  }
+
+  .extra-title {
+    color: #dddddd !important;
+  }
+
+
 }
